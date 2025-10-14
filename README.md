@@ -2,7 +2,7 @@
 
 **Author:** Binh Lai  
 **Affiliation:** University of Vaasa, Finland  
-**Correspondence:** binh.lai@uva.fi  
+**Correspondence:** binh.lai@uwasa.fi  
 
 This repository accompanies the paper  
 **“Trading-Aware Agents in Sugarscape: A Deep Reinforcement Learning Approach to Adaptive Economic Behavior”**  
@@ -57,8 +57,8 @@ Sugarscape-DRL/
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/BinhLai/Sugarscape-DRL.git
-cd Sugarscape-DRL
+git clone https://github.com/Nanyka/trading_aware_agents_sugarscape.git
+cd trading_aware_agents_sugarscape
 ```
 
 ### 2️⃣ Install dependencies
@@ -84,7 +84,7 @@ Key parameters (also adjustable in `config.yaml`):
 - Population = 500 agents  
 - Vision = 10  
 - Max steps = 5 × 10⁶  
-- Reward scheme = {CobbDouglas | KinkedSurvival}
+- Reward scheme = {CobbDouglasUtility | KinkedSurvival}
 
 ### 📊 Run analysis
 After training, open the notebook:
@@ -137,7 +137,7 @@ This project is released under the **MIT License** — see [LICENSE](LICENSE).
 
 ## 📂 Data Availability Statement
 The Unity simulation environment, training scripts, and analysis notebooks used in the paper are publicly available at  
-👉 **https://github.com/BinhLai/Sugarscape-DRL**  
+👉 **https://github.com/BinhLai/trading_aware_agents_sugarscape**  
 (commit `v1.0_submission`).
 
 ---
