@@ -57,22 +57,21 @@ git clone https://github.com/Nanyka/trading_aware_agents_sugarscape.git
 cd trading_aware_agents_sugarscape
 ```
 
-### 2️⃣ Install dependencies
-```bash
-pip install -r training/requirements.txt
-```
-*Required packages:* `mlagents`, `torch`, `numpy`, `matplotlib`, `pandas`, `seaborn`, `notebook`.
-
-### 3️⃣ Create & activate a virtual environment
+### 2️⃣ Create & activate a virtual environment
 
 This guide provides a **reproducible** path to train a Unity ML‑Agents project using **Conda** environments. It is suitable for reviewers who need a clean setup on macOS (Apple Silicon or Intel) or Linux.
 
 ```bash
-conda create -n py3923 python=3.9.23 -y
-conda activate py3923
-pip install -r requirements.txt 
+conda create -n <env_name> python=3.9.23 -y
+conda activate <env_name>
+```
+
+### 3️⃣ Install dependencies
+```bash
+pip install -r training/requirements.txt
 cd <project_local_directory>
 ```
+*Required packages:* `mlagents`, `torch`, `numpy`, `matplotlib`, `pandas`, `seaborn`, `notebook`.
 
 ---
 
