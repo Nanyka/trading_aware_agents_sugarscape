@@ -44,8 +44,7 @@ Sugarscape-DRL/
 │   ├── cobb_douglas_reward.yaml  ← configuration for cobbcobb_douglas_reward
 │   └── kinked_survival_reward.yaml ← configuration for kinked_survival_reward
 │
-└── data/
-    └── pretrained_models/    ← .onnx or .pth checkpoints
+└── requirements.txt
 ```
 
 ---
@@ -64,24 +63,41 @@ pip install -r training/requirements.txt
 ```
 *Required packages:* `mlagents`, `torch`, `numpy`, `matplotlib`, `pandas`, `seaborn`, `notebook`.
 
-### 3️⃣ Unity environment
-- Tested with **Unity 2022.3 LTS** and **ML-Agents Release 21**.  
-- Open `environment/Unity_Sugarscape_env` in Unity Hub or use the included Windows/macOS build.  
-- Launch the environment before running `train.py`.
+### 3️⃣ Create & activate a virtual environment
+
+This guide provides a **reproducible** path to train a Unity ML‑Agents project using **Conda** environments. It is suitable for reviewers who need a clean setup on macOS (Apple Silicon or Intel) or Linux.
+
+```bash
+conda create -n py3923 python=3.9.23 -y
+conda activate py3923
+pip install -r requirements.txt 
+cd <project_local_directory>
+```
 
 ---
 
 ## 🚀 Usage
 
 ### 🧠 Train agents
+
+**Cobb-Douglas Utility Reward**:
 ```bash
-python training/train.py --config training/config.yaml
+mlagents-learn ./config/cobb_douglas_reward.yaml  --env=./training_env/training_env_silicon.app --run-id=<RUN_ID> --no-graphic
 ```
+
+**Kinked Survival Reward**:
+```bash
+mlagents-learn ./config/kinked_survival_reward.yaml  --env=./training_env/training_env_silicon.app --run-id=<RUN_ID> --no-graphic
+```
+
 Key parameters (also adjustable in `config.yaml`):
 - Population = 500 agents  
 - Vision = 10  
 - Max steps = 5 × 10⁶  
 - Reward scheme = {CobbDouglasUtility | KinkedSurvival}
+
+Use a descriptive value for <RUN_ID> to distinguish and save checkpoints/models for each experiment (e.g., cd_utility_v1, kinked_survival_ablation).
+Optional flags you may add: --results-dir ./runs (custom output path), --force (overwrite an existing run).
 
 ### 📊 Run analysis
 After training, open the notebook:
