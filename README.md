@@ -1,4 +1,4 @@
-# Sugarscape-DRL: Trading-Aware Agents in Sugarscape
+# Trading-Aware Agents in Sugarscape
 
 **Author:** Binh Lai  
 **Affiliation:** University of Vaasa, Finland  
@@ -32,20 +32,17 @@ Sugarscape-DRL/
 ├── README.md                 ← this file
 ├── LICENSE
 │
-├── environment/              ← Unity training environment
-│   ├── Unity_Sugarscape_env/
-│   ├── config.json
-│   └── docs_environment.md
+├── training_env/              ← Unity training environment
+│   ├── training_env_64bit
+│   └── training_env_silicon
 │
-├── training/
-│   ├── train.py              ← PPO training entry point
-│   ├── utils.py              ← helper functions
-│   ├── requirements.txt
-│   └── config.yaml
+├── trained_models/
+│   ├── cobb_douglas_reward.onnx      ← trained model for cobbcobb_douglas_reward
+│   └── kinked_survival_reward.onnx   ← trained model for kinked_survival_reward
 │
-├── analysis/
-│   ├── analysis_notebook.ipynb  ← reproduces tables & figures
-│   └── results/
+├── config/
+│   ├── cobb_douglas_reward.yaml  ← configuration for cobbcobb_douglas_reward
+│   └── kinked_survival_reward.yaml ← configuration for kinked_survival_reward
 │
 └── data/
     └── pretrained_models/    ← .onnx or .pth checkpoints
