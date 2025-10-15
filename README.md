@@ -10,150 +10,155 @@ This repository accompanies the paper
 
 ---
 
-## 🧭 Overview
-This project extends the classical **Sugarscape** model by integrating **Deep Reinforcement Learning (DRL)** to jointly optimize movement and trading decisions.  
-Agents learn adaptive strategies via **Proximal Policy Optimization (PPO)**, closing the traditional *“move–then–trade”* gap and producing emergent equilibria consistent with economic theory.
+## 🏗️ Project Overview
 
-### Key Features
-- **Environment:** Unity-based Sugarscape world with dual renewable resources (sugar & spice).  
-- **Learning Algorithm:** Parameter-sharing PPO with centralized training and decentralized execution.  
-- **Behavioral Regimes:**  
-  1. *Cobb–Douglas Utility Scheme* — welfare-maximizing consumption behavior.  
-  2. *Kinked Survival Utility Scheme* — lexicographic survival-first behavior.  
-- **Metrics:** Carrying capacity, market-price stability, welfare efficiency, and inequality (Gini & Pareto indices).  
-- **Policy Experiments:** Optional transaction-tax analysis (Appendix A of the paper).
+This project builds upon Epstein & Axtell’s *Sugarscape* model and extends it using modern **Deep Reinforcement Learning (DRL)** techniques implemented in **Unity ML-Agents**.
 
----
+Agents are trained to:
+- Gather and trade resources (sugar and spice),
+- Maximize individual or survival-oriented rewards,
+- Demonstrate emergent trading behaviors and welfare optimization.
 
-## 📁 Repository Structure
-```
-Sugarscape-DRL/
-│
-├── README.md                 ← this file
-├── LICENSE
-│
-├── training_env/              ← Unity training environment
-│   ├── training_env_64bit
-│   └── training_env_silicon
-│
-├── trained_models/
-│   ├── cobb_douglas_reward.onnx      ← trained model for cobbcobb_douglas_reward
-│   └── kinked_survival_reward.onnx   ← trained model for kinked_survival_reward
-│
-├── config/
-│   ├── cobb_douglas_reward.yaml  ← configuration for cobbcobb_douglas_reward
-│   └── kinked_survival_reward.yaml ← configuration for kinked_survival_reward
-│
-└── requirements.txt
-```
+Two independent reward schemes are provided:
+1. **Cobb–Douglas Utility Reward** – Optimizes agents’ long-term utility following a smooth economic utility curve.  
+2. **Kinked Survival Reward** – Emphasizes short-term survival with nonlinear welfare responses.
 
 ---
 
-## ⚙️ Installation
+## 🧩 Project Structure
 
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/Nanyka/trading_aware_agents_sugarscape.git
-cd trading_aware_agents_sugarscape
+```
+.
+├── config/                              # ML-Agents configuration files
+│   ├── cobb_douglas_reward.yaml
+│   └── kinked_survival_reward.yaml
+│
+├── training_env/                        # Training environments
+│   └── training_env_silicon.app
+│
+├── test_env_with_trained_model/         # Environment with pretrained model
+│   └── test_env_with_trained_model_silicon.app
+│
+├── test_env_with_import_model/          # Environment to test imported models
+│   ├── test_env_with_import_model_silicon.app
+│   └── README.txt (instructions for reviewers)
+│
+├── onnx2sentis/                         # ONNX → Sentis converter
+│   └── build/, src/, CMakeLists.txt
+│
+├── results/                             # Default output logs and checkpoints
+│
+├── requirements.txt                     # Python dependencies
+├── README.md                            # This document
+└── LICENSE
 ```
 
-### 2️⃣ Create & activate a virtual environment
+---
 
-This guide provides a **reproducible** path to train a Unity ML‑Agents project using **Conda** environments. It is suitable for reviewers who need a clean setup on macOS (Apple Silicon or Intel) or Linux.
+## ⚙️ Environment Setup
+
+### 1️⃣ Create & activate a virtual environment
+This guide provides a reproducible path to train a Unity ML-Agents project using Conda environments.  
+It is suitable for reviewers on macOS (Apple Silicon or Intel) and Linux.
 
 ```bash
-conda create -n <env_name> python=3.9.23 -y
-conda activate <env_name>
-```
-
-### 3️⃣ Install dependencies
-```bash
-pip install -r training/requirements.txt
+conda create -n py3923 python=3.9.23 -y
+conda activate py3923
+pip install -r requirements.txt 
 cd <project_local_directory>
 ```
-*Required packages:* `mlagents`, `torch`, `numpy`, `matplotlib`, `pandas`, `seaborn`, `notebook`.
 
 ---
 
-## 🚀 Usage
+## 🧠 Train Agents
 
-### 🧠 Train agents
-
-**Cobb-Douglas Utility Reward**:
+### Cobb–Douglas Utility Reward
 ```bash
-mlagents-learn ./config/cobb_douglas_reward.yaml  --env=./training_env/training_env_silicon.app --run-id=<RUN_ID> --no-graphic
+mlagents-learn ./config/cobb_douglas_reward.yaml    --env=./training_env/training_env_silicon.app   --run-id=cobb_douglas_run --no-graphic
 ```
 
-**Kinked Survival Reward**:
+### Kinked Survival Reward
 ```bash
-mlagents-learn ./config/kinked_survival_reward.yaml  --env=./training_env/training_env_silicon.app --run-id=<RUN_ID> --no-graphic
+mlagents-learn ./config/kinked_survival_reward.yaml    --env=./training_env/training_env_silicon.app   --run-id=kinked_survival_run --no-graphic
 ```
 
-Key parameters (also adjustable in `config.yaml`):
-- Population = 500 agents  
-- Vision = 10  
-- Max steps = 5 × 10⁶  
-- Reward scheme = {CobbDouglasUtility | KinkedSurvival}
+### Key parameters (adjustable in YAML)
+- **Population:** 500 agents  
+- **Vision radius:** 10  
+- **Max steps:** 5 × 10⁶  
+- **Reward scheme:** {CobbDouglasUtility, KinkedSurvivalUtility}
 
-Use a descriptive value for <RUN_ID> to distinguish and save checkpoints/models for each experiment (e.g., cd_utility_v1, kinked_survival_ablation).
-Optional flags you may add: --results-dir ./runs (custom output path), --force (overwrite an existing run).
+Use descriptive run IDs for clarity, e.g. `cd_v1`, `ks_v1`.  
+Optional flags:  
+`--results-dir ./runs` (custom output path), `--force` (overwrite an existing run).
 
-### 📊 Run analysis
-After training, open the notebook:
+---
+
+## 📈 Monitor Training with TensorBoard
+
+To visualize learning curves and performance metrics in real time:
+
 ```bash
-jupyter notebook analysis/analysis_notebook.ipynb
-```
-The notebook reproduces:
-- Carrying-capacity curves  
-- Price-stability plots  
-- Welfare and inequality metrics  
-- Pareto-tail dynamics and spatial patterns  
-
----
-
-## 📈 Main Results (summary)
-| Metric | DRL vs. Rule-based | Description |
-|---------|--------------------|--------------|
-| **Carrying capacity** | ↑ 28–32 % | DRL agents sustain larger populations. |
-| **Price volatility** | ↓ ~50 % | Faster convergence to equilibrium. |
-| **Aggregate welfare** | ↑ 7 % | More efficient resource utilization. |
-| **Inequality (Gini)** | ↓ 0.05–0.08 | Fairer long-run wealth distribution. |
-
----
-
-## 🧩 Reproducibility Notes
-- Deterministic and stochastic resource landscapes are both supported.  
-- Each reported result averaged over 50 replications with fixed random seeds.  
-- Training reproducible via `train.py` using the provided config.  
-- Hardware used: NVIDIA RTX 3090 (24 GB), Intel i9-13900K, 64 GB RAM.  
-
----
-
-## 🧠 Citation
-```bibtex
-@article{Lai2025SugarscapeDRL,
-  author  = {Binh Lai},
-  title   = {Trading-Aware Agents in Sugarscape: A Deep Reinforcement Learning Approach to Adaptive Economic Behavior},
-  journal = {Computational Economics},
-  year    = {2025},
-  note    = {Submitted manuscript},
-}
+tensorboard --logdir results
 ```
 
----
-
-## 📜 License
-This project is released under the **MIT License** — see [LICENSE](LICENSE).
+Then open the displayed local URL (e.g., `http://localhost:6006`) in your browser.  
+This allows you to compare training progress between the two reward schemes.
 
 ---
 
-## 📂 Data Availability Statement
-The Unity simulation environment, training scripts, and analysis notebooks used in the paper are publicly available at  
-👉 **https://github.com/BinhLai/trading_aware_agents_sugarscape**  
-(commit `v1.0_submission`).
+## 🧪 Test Trained and Imported Models
+
+After training completes, two environments are provided to review or test models.
+
+### ✅ 1. `test_env_with_trained_model`
+This environment includes **pre-trained models**.  
+Open the folder `test_env_with_trained_model` and run the executable  
+(e.g., `test_env_with_trained_model_silicon`).  
+Use this to observe the stable, fully trained behavior of agents under both reward schemes.
 
 ---
 
-## 🤝 Acknowledgements
-This work was supported by the **University of Vaasa** and the **DigiConsumers Research Network**.  
-The author thanks **Prof. Panu Kalmi** and the *Computational Economics* editorial team for constructive feedback on reproducibility and open-science practices.
+### ⚙️ 2. `test_env_with_import_model`
+This environment allows reviewers to **test their own models** after completing the training steps.
+
+Steps:
+1. **Convert your trained model**  
+   Use the included `onnx2sentis` tool to convert your exported `.onnx` model into `.sentis` format:
+   ```bash
+   ./onnx2sentis/build/onnx2sentis ./results/<run_id>/policy.onnx
+   ```
+   This produces a file `policy.sentis`.
+
+2. **Import and test**  
+   Launch the environment `test_env_with_import_model_silicon` and press **“Import Model”**.  
+   Select your `.sentis` file to assign it to the agents.
+
+> ⚠️ **Note:**  
+> Unity currently does **not** support importing `.onnx` models at runtime.  
+> Therefore, this environment uses **Heuristic Mode** for Sentis inference.  
+> In this mode, agents’ actions are predicted sequentially via Sentis, which introduces some delay in their responses.  
+> Use this setup **only** to verify your model loads and behaves correctly, or to compare performance before and after training.  
+> For smooth real-time behavior demonstrations, use the **`test_env_with_trained_model`** environment instead.
+
+---
+
+## 🧰 Reproducibility Summary
+
+| Step | Description | Output |
+|------|--------------|---------|
+| 1 | Create Conda environment | Isolated Python environment |
+| 2 | Train with ML-Agents | ONNX models & TensorBoard logs |
+| 3 | Convert ONNX → Sentis | `.sentis` model for Unity runtime |
+| 4 | Test pre-trained models | `test_env_with_trained_model` |
+| 5 | Import custom model | `test_env_with_import_model` |
+
+---
+
+## 🧩 Technical Notes
+
+- **Engine:** Unity 6.1 + Sentis 2.1  
+- **Backend:** GPUCompute (recommended)  
+- **OS Support:** macOS (Apple Silicon / Intel), Linux  
+- **Framework:** Unity ML-Agents 1.0.10  
+- **Languages:** C#, Python  
