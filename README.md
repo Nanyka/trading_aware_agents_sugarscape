@@ -62,8 +62,8 @@ This guide provides a reproducible path to train a Unity ML-Agents project using
 It is suitable for reviewers on macOS (Apple Silicon or Intel) and Linux.
 
 ```bash
-conda create -n py3923 python=3.9.23 -y
-conda activate py3923
+conda create -n training_env python=3.9.23 -y
+conda activate training_env
 pip install -r requirements.txt 
 cd <project_local_directory>
 ```
@@ -124,10 +124,7 @@ This environment allows reviewers to **test their own models** after completing 
 
 Steps:
 1. **Convert your trained model**  
-   Use the included `onnx2sentis` tool to convert your exported `.onnx` model into `.sentis` format:
-   ```bash
-   ./onnx2sentis/build/onnx2sentis ./results/<run_id>/policy.onnx
-   ```
+   Use the included `onnx2sentis` tool to convert your exported `.onnx` model into `.sentis` format.
    This produces a file `policy.sentis`.
 
 2. **Import and test**  
@@ -160,5 +157,5 @@ Steps:
 - **Engine:** Unity 6.1 + Sentis 2.1  
 - **Backend:** GPUCompute (recommended)  
 - **OS Support:** macOS (Apple Silicon / Intel), Linux  
-- **Framework:** Unity ML-Agents 1.0.10  
+- **Framework:** Unity ML-Agents 3.0.0  
 - **Languages:** C#, Python  
