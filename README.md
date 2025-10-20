@@ -34,13 +34,13 @@ Two independent reward schemes are provided:
 │   └── kinked_survival_reward.yaml
 │
 ├── training_env/                        # Training environments
-│   └── training_env_silicon.app
+│   └── training_env_silicon.zip         # Unzip the file to use it
 │
 ├── test_env_with_trained_model/         # Environment with pretrained model
-│   └── test_env_with_trained_model_silicon.app
+│   └── test_env_with_trained_model_silicon.zip
 │
 ├── test_env_with_import_model/          # Environment to test imported models
-│   ├── test_env_with_import_model_silicon.app
+│   ├── test_env_with_import_model_silicon.zip
 │   └── README.txt (instructions for reviewers)
 │
 ├── onnx2sentis/                         # ONNX → Sentis converter
@@ -57,7 +57,7 @@ Two independent reward schemes are provided:
 
 ## ⚙️ Environment Setup
 
-### 1️⃣ Create & activate a virtual environment
+### ✅ Create & activate a virtual environment
 This guide provides a reproducible path to train a Unity ML-Agents project using Conda environments.  
 It is suitable for reviewers on macOS (Apple Silicon or Intel) and Linux.
 
