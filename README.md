@@ -48,6 +48,13 @@ Two independent reward schemes are provided:
 │
 ├── results/                             # Default output logs and checkpoints
 │
+├── analysis/                            # Analysis and visualization notebooks
+│   ├── analyze_sugarscape_training_submission.ipynb
+│   ├── data_visualizer.py
+│   ├── simulation_manager.py
+│   ├── images/
+│   └── submission_data/                  
+│
 ├── requirements.txt                     # Python dependencies
 ├── README.md                            # This document
 └── LICENSE
@@ -149,6 +156,18 @@ Steps:
 | 3 | Convert ONNX → Sentis | `.sentis` model for Unity runtime |
 | 4 | Test pre-trained models | `test_env_with_trained_model` |
 | 5 | Import custom model | `test_env_with_import_model` |
+
+---
+
+## 📊 Analysis and Visualization
+
+The **`analysis/`** folder contains Jupyter notebooks and helper scripts for post-training evaluation and visualization:
+
+- **`analyze_sugarscape_training_submission.ipynb`** — Main analysis notebook for visualizing agent performance, trading patterns, and welfare outcomes.  
+- **`data_visualizer.py`** — Utility module for loading logs, plotting learning curves, and generating comparative charts across simulations.  
+- **`simulation_manager.py`** — Controls batch simulations and manages experiment metadata.  
+- **`images/`** — Contains plots and figures generated from experiments.  
+- **`submission_data/`** — Stores processed data used for journal submission figures.
 
 ---
 
