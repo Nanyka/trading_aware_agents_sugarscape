@@ -2,7 +2,7 @@
 
 **Author:** Binh Lai  
 **Affiliation:** University of Vaasa, Finland  
-**Correspondence:** binh.lai@uwasa.fi  
+**Correspondence:** laithanh@uwasa.fi  
 
 This repository accompanies the paper  
 **“Trading-Aware Agents in Sugarscape: A Deep Reinforcement Learning Approach to Adaptive Economic Behavior”**  
@@ -53,6 +53,7 @@ Two independent reward schemes are provided:
 │   ├── data_visualizer.py
 │   ├── simulation_manager.py
 │   ├── images/
+│   ├── env_for_generate_data/           # The simulation environment used for data generation
 │   └── submission_data/                  
 │
 ├── requirements.txt                     # Python dependencies
@@ -82,11 +83,6 @@ cd <project_local_directory>
 ### Cobb–Douglas Utility Reward
 ```bash
 mlagents-learn ./config/cobb_douglas_reward.yaml    --env=./training_env/training_env_silicon.app   --run-id=cobb_douglas_run --no-graphic
-```
-
-### Kinked Survival Reward
-```bash
-mlagents-learn ./config/kinked_survival_reward.yaml    --env=./training_env/training_env_silicon.app   --run-id=kinked_survival_run --no-graphic
 ```
 
 ### Key parameters (adjustable in YAML)
@@ -166,7 +162,8 @@ The **`analysis/`** folder contains Jupyter notebooks and helper scripts for pos
 - **`analyze_sugarscape_training_submission.ipynb`** — Main analysis notebook for visualizing agent performance, trading patterns, and welfare outcomes.  
 - **`data_visualizer.py`** — Utility module for loading logs, plotting learning curves, and generating comparative charts across simulations.  
 - **`simulation_manager.py`** — Controls batch simulations and manages experiment metadata.  
-- **`images/`** — Contains plots and figures generated from experiments.  
+- **`images/`** — Contains plots and figures generated from experiments.
+- **`submission_data/`** — Contains the simulation environment used for data generation (unzip prior to execution)
 - **`submission_data/`** — Stores processed data used for journal submission figures.
 
 ---
@@ -175,6 +172,6 @@ The **`analysis/`** folder contains Jupyter notebooks and helper scripts for pos
 
 - **Engine:** Unity 6.1 + Sentis 2.1  
 - **Backend:** GPUCompute (recommended)  
-- **OS Support:** macOS (Apple Silicon / Intel), Linux  
+- **OS Support:** macOS (Apple Silicon)
 - **Framework:** Unity ML-Agents 3.0.0  
 - **Languages:** C#, Python  
