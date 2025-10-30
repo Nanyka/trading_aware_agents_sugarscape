@@ -48,7 +48,7 @@ Two independent reward schemes are provided:
 │
 ├── results/                             # Default output logs and checkpoints
 │
-├── analysis/                            # Analysis and visualization notebooks
+├── TradingAware_Sugarscape_Replication/         # Analysis and visualization notebooks
 │   ├── analyze_sugarscape_training_submission.ipynb
 │   ├── data_visualizer.py
 │   ├── simulation_manager.py
