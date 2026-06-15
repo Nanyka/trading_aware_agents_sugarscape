@@ -1,0 +1,24 @@
+PDF comparison summary: v2 vs v1
+v1 pages: 23; v2 pages: 31
+Approx. highlighted changed/added tokens in v2: 5448
+Pages in v2 with most highlighted tokens:
+- Page 18: 399 tokens highlighted; headings/context: The mechanism is trade-aware positioning. Under Rule M, agents myopically con- | 4.2 Emergent Market Prices and Equilibrium | The next analysis focuses on Hypothesis H2, asking whether trade-aware movement
+- Page 10: 386 tokens highlighted; headings/context: Expected-utility heuristic. | The first two terms of Eq. (1) compare welfare before and after the chosen action
+- Page 8: 381 tokens highlighted; headings/context: 3.2 Observation, Action, and Reward Design | Scope of Learning. | Before specifying the observation, action, and reward components, we state the scope
+- Page 22: 374 tokens highlighted; headings/context: Fig. 7: Temporal evolution of Gini coefficients for individual wealth. | 0.364 (± 0.023) versus 0.361 (± 0.022). Contrary to the Gini-based prediction in H4, | Complementary inequality measures.
+- Page 27: 309 tokens highlighted; headings/context: Third, the experiments do not include an observation ablation in which the MRS | Fourth, the learning architecture uses single-agent PPO with full parameter shar-
+- Page 17: 282 tokens highlighted; headings/context: Fig. 2: Comparison of carrying capacity between DRL and rule-based agents under | Deterministic landscape. | DRL agents sustain a mean terminal population of 120 (± 7) compared to 94 (±
+- Page 11: 274 tokens highlighted; headings/context: 3.3 DRL Policy Training | 3.3.1 Decision Problem and Decentralized Learning | The underlying multi-agent system is a partially observable stochastic game. At each
+- Page 23: 270 tokens highlighted; headings/context: Top-10% wealth shares are 21.2% (DRL) versus 21.8% (rule-based) on determin- | T pattern and reinforcing the interpretation above. | Distributional tail.
+- Page 13: 249 tokens highlighted; headings/context: Table 1: Environment parameters used in this study. All values apply | PPO-learned). Rule T executes bilateral trade in both conditions. | Parameter
+- Page 20: 225 tokens highlighted; headings/context: Fig. 4: Cumulative number of trades and trading tempo for DRL vs. rule-based | The higher trade volume under DRL is consistent with the H2 mechanism | 4.4 Efficiency and Resource Utilization
+- Page 9: 220 tokens highlighted; headings/context: The external observation is therefore a matrix of shape n × 4 = 41 × 4 at v = 10. The | Internal state vector. | A six-element vector encodes the agent’s own state: current sugar stock, current spice
+- Page 24: 212 tokens highlighted; headings/context: Fig. 8: Wealth distribution of DRL and rule-based agents at episode termination. | That DRL agents achieve this while sustaining higher consumption (Section 4) implies | Overall, trade-aware movement produces a larger and more sustainable population
+- Page 12: 185 tokens highlighted; headings/context: 3.3.3 Training Process | Training was implemented via Unity ML-Agents Toolkit [19], using centralized training | 3.4 Model Modifications
+- Page 26: 182 tokens highlighted; headings/context: DRL-enhanced Sugarscape can be extended to evaluate fiscal or regulatory instru- | Beyond sustainability applications, the learning-based trading environment offers
+- Page 16: 165 tokens highlighted; headings/context: For this research, with N = 500 agents, T = 150, and E = 3 PPO epochs, the total | Each PPO iteration requires forward and backward passes through a three-layer neural | 0.02 s per 1,000 environment steps, or roughly three hours of wall-clock training per
+- Page 30: 157 tokens highlighted; headings/context: Computational Social Science Society of the Americas, pp. 31–58. Springer, Cham | SpringerBriefs in Intelligent Systems. Springer, Cham, Switzerland (2016). https:
+- Page 2: 141 tokens highlighted; headings/context: 1 Introduction | In today’s global economy, almost every economic action is intertwined with trade. | From energy markets to digital platforms, individuals, firms, and algorithms con-
+- Page 14: 141 tokens highlighted; headings/context: To assess distributional shape directly (rather than only its summary statistic), we | CRt = | Each condition—rule-based versus DRL, static versus stochastic maps—is repli-
+- Page 4: 125 tokens highlighted; headings/context: 2.2 Learning in Agent-Based Economic Models | A growing body of work has incorporated learning algorithms into agent-based eco- | Crooks, trading remained an exogenous rule rather than a learned behavior. These
+- Page 5: 125 tokens highlighted; headings/context: This learning framework transforms the Sugarscape from a static heuristic sys- | 2.4 Game Theory and the Agent Movement Rule | The classical Sugarscape rules can be reinterpreted through a game-theoretic lens.

@@ -1,0 +1,1010 @@
+%Version 3.1 December 2024
+% See section 11 of the User Manual for version history
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+
+%%=======================================================%%
+%% to print line numbers in the margin use lineno option %%
+%%=======================================================%%
+
+%%\documentclass[lineno,pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%=========================================================================================%%
+%% the documentclass is set to pdflatex as default. You can delete it if not appropriate.  %%
+%%=========================================================================================%%
+
+%%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%Note: the following reference styles support Namedate and Numbered referencing. By default the style follows the most common style. To switch between the options you can add or remove "Numbered" in the optional parenthesis. 
+%%The option is available for: sn-basic.bst, sn-chicago.bst%  
+ 
+%%\documentclass[pdflatex,sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
+%%\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style
+%%\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
+%%\documentclass[pdflatex,sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[pdflatex,sn-vancouver-num]{sn-jnl}% Vancouver Numbered Reference Style
+%%\documentclass[pdflatex,sn-vancouver-ay]{sn-jnl}% Vancouver Author Year Reference Style
+%%\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style
+%%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
+
+%%%% Standard Packages
+%%<additional latex packages if required can be included here>
+
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{subcaption}
+%%%%
+
+%%%%%=============================================================================%%%%
+%%%%  Remarks: This template is provided to aid authors with the preparation
+%%%%  of original research articles intended for submission to journals published 
+%%%%  by Springer Nature. The guidance has been prepared in partnership with 
+%%%%  production teams to conform to Springer Nature technical requirements. 
+%%%%  Editorial and presentation requirements differ among journal portfolios and 
+%%%%  research disciplines. You may find sections in this template are irrelevant 
+%%%%  to your work and are empowered to omit any such section if allowed by the 
+%%%%  journal you intend to submit to. The submission guidelines and policies 
+%%%%  of the journal take precedence. A detailed User Manual is available in the 
+%%%%  template package for technical guidance.
+%%%%%=============================================================================%%%%
+
+%% as per the requirement new theorem styles can be included as shown below
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%  meant for continuous numbers
+%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
+%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
+\newtheorem{proposition}[theorem]{Proposition}% 
+%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+%%\unnumbered% uncomment this for unnumbered level heads
+
+\begin{document}
+
+\title{Trading-Aware Agents in Sugarscape
+    \subtitle{A Deep Reinforcement Learning Approach to Adaptive Economic Behavior}}
+
+%%=============================================================%%
+%% GivenName	-> \fnm{Joergen W.}
+%% Particle	-> \spfx{van der} -> surname prefix
+%% FamilyName	-> \sur{Ploeg}
+%% Suffix	-> \sfx{IV}
+%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
+%%  \sfx{IV}}\email{iauthor@gmail.com}
+%%=============================================================%%
+
+\author{\fnm{Thanh Binh} \sur{Lai}}\email{laithanh@uwasa.fi}
+
+\affil{\orgdiv{School of Accounting and Finance, Economics Research Group}, \orgname{University of Vaasa}, \orgaddress{\street{Wolffintie 32}, \city{Vaasa}, \postcode{65200}, \country{Finland}}}
+
+%%==================================%%
+%% Sample for unstructured abstract %%
+%%==================================%%
+
+\abstract{Trading is the lifeblood of modern economies, yet most agent-based models still treat it as an afterthought---an event that follows, rather than informs, the decision of where to move.  
+This paper argues that such separation no longer reflects today's interconnected, data-driven markets, in which the prospect of exchange shapes spatial behavior at every step.  
+To address this gap, we extend the classical \textit{Sugarscape} model by introducing \textbf{trade-aware agents} whose movement policies are learned with Deep Reinforcement Learning (DRL) and conditioned on local market information---specifically, the marginal rates of substitution (MRS) of neighboring agents.  
+Bilateral exchange follows the canonical Rule T mechanism; what the DRL policy learns is how to position agents optimally in the presence of trading opportunities, so that they move not only toward resources but also toward complementary partners.
+
+Using Proximal Policy Optimization (PPO) with shared parameters, we compare trade-aware DRL agents against rule-based agents under identical environmental conditions.  
+Simulation results show that trade-aware movement raises the system's effective carrying capacity, yields markedly more consistent convergence of decentralized prices across replicates, and improves the sustainability of resource use relative to the rule-based baseline.  
+The framework transforms \textit{Sugarscape} into a learning-based laboratory for studying equilibrium formation, inequality dynamics, and policy interventions in markets where trading and movement are inseparable.}
+
+\keywords{Agent-based modeling; Deep reinforcement learning; Sugarscape; Market equilibrium; Computational economics; Policy simulation}
+
+%%\pacs[JEL Classification]{D8, H51}
+
+%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
+
+\maketitle
+
+\section{Introduction}\label{sec1}
+
+In today's global economy, almost every economic action is intertwined with trade.  
+From energy markets to digital platforms, individuals, firms, and algorithms continuously adjust their behavior in anticipation of future exchanges.  
+Yet in many computational models of economic behavior---including the classical \textit{Sugarscape} framework of \citet{EpsteinAxtell1996}---trading is treated as a secondary process, something that occurs only \emph{after} agents decide where to move or what to consume.  
+This simplification made sense in the 1990s, when computational limits constrained model complexity, but it now limits our ability to study economies in which trading itself shapes movement, learning, and survival.
+
+Recent advances in DRL provide an opportunity to close this conceptual gap.  
+Modern DRL algorithms such as PPO \citep{Schulman2017} and Soft Actor--Critic (SAC) \citep{Haarnoja2018} allow agents to learn stable, high-dimensional policies that jointly account for mobility, exchange, and adaptation within dynamic environments.  
+These methods have already been applied to economic and multi-agent contexts---such as the \textit{AI Economist} framework for adaptive taxation and market design \citep{Zheng2022}, and multi-agent DRL (MARL) studies of resource sharing and social dilemmas \citep{Leibo2017, Hughes2018}---demonstrating that learning agents can endogenously develop cooperative and coordinated behaviors that were previously manually encoded in agent-based models.  
+Embedding such adaptive learning into economic simulations thus represents both a theoretical update and a methodological necessity for studying modern economies driven by strategic, trade-aware behavior.
+
+This paper introduces a \textbf{trade-aware \textit{Sugarscape}} in which agents' movement decisions are coupled to local market information through DRL.  
+Concretely, the learned movement policy is conditioned on the marginal rates of substitution (MRS) of neighboring agents and on local resource availability, while bilateral exchange continues to follow the classical Rule T of \citet{EpsteinAxtell1996}.  
+The learning therefore targets \emph{spatial positioning in the presence of trading opportunities}, not the bargaining process itself.  
+This narrowing is deliberate: it isolates a single, well-defined source of behavioral adaptation and enables a clean comparison with the rule-based baseline under identical environmental parameters.
+
+The contribution is threefold.  
+First, it provides a \textbf{conceptual update} to the canonical \textit{Sugarscape} model, embedding bounded-rational adaptation through experience \citep{Simon1957} without replacing the model's classical trading mechanism.  
+Second, it offers a \textbf{methodologically controlled comparison} between rule-based (Rule M) and DRL-driven movement under matched environmental conditions, isolating the effect of trade-awareness in spatial decision-making.  
+Third, it establishes a \textbf{computational laboratory} for policy experiments---taxation, redistribution, conservation incentives---within a unified, learning-enabled environment that responds endogenously to institutional design \citep{Tesfatsion2017}.
+
+The remainder of this paper proceeds as follows.  
+Section~\ref{sec:literature} reviews related work in economic modeling, learning, and game-theoretic foundations.  
+Section~\ref{sec:methodology} details the simulation environment, agent design, and DRL training procedure.  
+Section~\ref{sec:results} reports comparative results on carrying capacity, market stability, efficiency, and inequality.  
+Section~\ref{sec:implications} discusses theoretical and practical implications for computational economics, policy design, and game simulation.
+
+% ------------------------------------------------------
+
+\section{Literature Review}
+\label{sec:literature}
+
+% ------------------------------------------------------
+
+\subsection{Economic Models}
+
+\textit{Sugarscape} represents one of the earliest and most influential attempts to operationalize microeconomic theory within an agent-based environment.  
+In its variant Constant Growback with Traders, agents maximize a Cobb--Douglas utility function over two resources: \(sugar\) and \(spice\)---and engage in bilateral barter whenever their marginal substitution rates (MRS) differ \citep{EpsteinAxtell1996}.  
+Through decentralized exchanges, the system generates emergent prices that approximate the Pareto-efficient equilibria predicted by classical microeconomics.  
+Agents trade until no further mutually beneficial exchanges are possible, equalizing their MRS and producing a stable equilibrium price \citep{Axtell2005}.  
+Due to this elegant formulation, \textit{Sugarscape} became a canonical platform for studying self-organized markets and wealth dynamics.
+
+Despite its foundational role, the original design makes simplifying assumptions that limit behavioral realism.  
+The spatial resource landscape is static, featuring fixed abundance peaks and predictable migration patterns.  
+Agents move according to a hard-coded, myopic rule: within their vision range, they select the cell that maximizes immediate welfare;
+\[
+W(\text{sugar}, \text{spice}) = \text{sugar}^{\alpha}\,\text{spice}^{1-\alpha},
+\]
+where $\alpha$ reflects metabolic preferences,
+\[
+\alpha_i = \frac{m^{\text{sugar}}_i}{m^{\text{sugar}}_i + m^{\text{spice}}_i}.
+\]
+Trading occurs only \emph{after} movement, meaning that the decision to relocate does not consider potential future trades.  
+Consequently, the model captures static equilibrium but omits the dynamic coupling between spatial movement, adaptive expectations, and market formation.
+
+This omission raises an important question central to modern computational economics:  
+how would outcomes change if agents could integrate trading expectations directly into their spatial strategy?  
+Recent literature in multi-agent reinforcement learning suggests that agents can indeed learn to internalize such forward-looking motives.  
+For example, \citet{Leibo2017} shows conditions under which MARL agents become more or less cooperative in sequential social dilemmas, while \citet{Zheng2022} demonstrate that reinforcement-learning agents can jointly discover optimal trading and taxation policies in simulated economies. 
+
+The present research addresses this behavioral gap by designing agents whose spatial decisions are explicitly informed by anticipatory trading information---neighbors' MRS and local market state---even though the bilateral exchange mechanism itself remains classical.  
+In doing so, it transforms \textit{Sugarscape} from a model in which trade follows movement into one in which the \emph{anticipation} of trade shapes movement, more closely aligning micro-level decision-making with the expectation-driven behavior observed in real-world markets.
+
+% ------------------------------------------------------
+
+\subsection{Learning in Agent-Based Economic Models}
+A growing body of work has incorporated learning algorithms into agent-based economic models to replace fixed heuristics with adaptive behavior.  
+\citet{BrearcliffeCrooks2020} extended the NetLogo implementation of \textit{Sugarscape} to include evolutionary computation, Q-learning, and SARSA agents.  
+Their experiments demonstrated that learning can alter emergent outcomes, but performance depends heavily on reward specification and environmental design---indeed, rule-based agents occasionally outperformed learning ones.  
+Notably, their models emphasized foraging and conflict rather than market behavior; trading was not part of the learned action space.
+
+\citet{Jager2021} proposed a neural-network framework for agent-based models, applying it to \textit{Sugarscape} as a test case.  
+His agents learned movement policies guided by a utility-based reward function, successfully reproducing canonical Sugarscape dynamics such as clustering and heavy-tailed wealth distributions.  
+However, as in Brearcliffe and Crooks, trading remained an exogenous rule rather than a learned behavior.  
+These studies thus confirmed that reinforcement learning can replicate classical emergent phenomena but did not extend it to market optimization.
+
+The present work advances this literature by embedding \emph{market information} directly into the agent's observation and allowing movement to adapt in response.  
+Concretely, agents observe neighboring traders' MRS and local resource availability; their PPO-learned movement policy can then condition spatial choices on trading opportunity---for instance, positioning near complementary partners rather than only near unclaimed resources.  
+Bilateral trade itself continues to follow Rule T, so the contribution is to make \emph{where agents go} trade-aware, not to learn a bargaining policy.  
+By employing PPO \citep{Schulman2017}, the framework stabilizes training under non-stationary multi-agent dynamics and allows agents to discover positioning strategies that consistently produce utility-improving exchanges.
+
+% ------------------------------------------------------
+
+\subsection{Reinforcement Learning Agents}
+Within the reinforcement-learning paradigm, each agent faces a Markov Decision Process (MDP) defined by the tuple \((S,A,R,P,\gamma)\).  
+Here \(S\) denotes the set of possible states (including local resources, neighbouring agents, and internal holdings), \(A\) the available actions, \(R\) the reward function, \(P\) the transition dynamics, and \(\gamma\) the discount factor.  
+The agent seeks a policy \(\pi(a|s)\) that maximizes expected discounted return
+\[
+J(\pi)=\mathbb{E}_{\pi}\!\left[\sum_{t=0}^{\infty}\gamma^{t}R(s_t,a_t)\right].
+\]
+In the extended \textit{Sugarscape}, the action space comprises directional moves only; trade is executed by Rule T whenever adjacent agents can mutually improve welfare.  
+The reward function reflects per-step utility gain (with a death penalty), so the policy is rewarded for transitions that yield higher Cobb--Douglas welfare.  
+Through repeated interaction, PPO updates policy parameters to improve long-term welfare, learning movement strategies that exploit both resource availability and trading opportunity within the agent's observation.
+
+This learning framework transforms the Sugarscape from a static heuristic system into a dynamic economy of adaptive agents.  
+Each agent acts as a decentralized optimizer, continuously updating its strategy to balance resource harvesting, trading opportunities, and survival---a closer analogue to real economic actors.
+
+% ------------------------------------------------------
+
+\subsection{Game Theory and the Agent Movement Rule}
+The classical Sugarscape rules can be reinterpreted through a game-theoretic lens.  
+The trading mechanism (\textit{Rule T}) functions as a bilateral bargaining game: two agents exchange sugar and spice until both reach the Pareto frontier, where their MRS converge.  
+The trading price \(p\)---the geometric mean of their MRS---ensures that each transaction lies within the core of the game, yielding mutual improvement and local market clearing \citep{EpsteinAxtell1996}.
+
+Movement decisions (\textit{Rule M}) can similarly be viewed as repeated spatial games against nature.  
+Each agent chooses the cell that maximizes instantaneous utility, effectively performing a greedy search for a local Nash equilibrium in resource allocation.  
+However, because agents cannot forecast future trading partners, these myopic rules miss potential gains from anticipated exchange.
+    
+By endowing agents with reinforcement-learning movement policies that observe market state, the present study couples these two layers of decision-making at the level of \emph{spatial choice}: although exchange still proceeds via Rule T, the decision to be adjacent to a potential trading partner is now governed by learning rather than by heuristic.  
+Agents evaluate spatial moves in light of expected trading payoffs, transforming movement from a foraging problem into a positioning game that integrates logistics with market foresight.  
+This synthesis bridges economic theory and modern AI: bounded-rational agents learn to approximate general-equilibrium outcomes through decentralized adaptation, demonstrating how micro-level learning can yield macro-level order \citep{Leibo2017, Hughes2018, Zheng2022}.
+
+
+\subsection{Research Hypotheses and Questions}
+Building on the theoretical framework of reinforcement learning in the Sugarscape environment, this study is guided by the following hypotheses and research questions:
+
+\begin{itemize}
+\item \textbf{H1 (Carrying Capacity).} Trade-aware movement will sustain a higher carrying capacity than rule-based movement under identical environmental conditions.
+
+\textbf{Rationale}: By conditioning spatial choices on neighbors' MRS, the learned policy positions agents to access utility-improving trades that the myopic Rule-M policy misses, reducing starvation and raising the sustainable population level.
+
+\item \textbf{H2 (Price Convergence).} Decentralized prices will converge more reliably under trade-aware movement than under rule-based movement, exhibiting lower dispersion of the cumulative price trajectory across replicates at matched time points.
+
+\textbf{Rationale}: Although the bilateral trading mechanism (Rule T) is identical across conditions, trade-aware movement increases the rate at which complementary traders meet. More frequent and more selective encounters drive local MRS values toward equality more rapidly, contracting price dispersion across the population.
+
+\item \textbf{H3 (Resource Efficiency and Welfare).} Trade-aware movement will yield higher aggregate consumption and welfare than rule-based movement, without exceeding the environment's regenerative capacity.
+
+\textbf{Rationale}: Learned positioning routes resources toward agents who value them most (via subsequent Rule-T exchange), reducing the share of regrown sugar and spice that goes unconsumed and producing higher total Cobb--Douglas welfare.
+
+\item \textbf{H4 (Inequality).} Wealth dispersion under trade-aware movement will stabilize at a lower Gini coefficient than under rule-based movement.
+
+\textbf{Rationale}: Because trade-aware agents engage more reliably in mutually beneficial exchanges, the redistributive effect of Rule T operates more uniformly across the population, dampening the heavy upper tail typical of kinetic-exchange economies.
+
+\end{itemize}
+
+\paragraph{Research Questions}
+
+\begin{itemize}
+    \item[(i)] How does embedding trading intent into movement decisions affect the emergent macroeconomic equilibrium?
+    \item[(ii)] Does learning-based adaptivity improve social welfare, equality and sustainability without central coordination?
+\end{itemize}
+
+\subsection{Theoretical Framing: Bounded Rationality and Adaptive Learning}
+
+Classical economic agents are often modeled as perfectly rational optimizers.  
+By contrast, the canonical \textit{Sugarscape} already embodies bounded rationality: agents have limited vision, act on local information, and follow fixed heuristics for movement and trade \citep{EpsteinAxtell1996}.  
+Building on this foundation, the present study introduces a \textit{learning-based form of bounded rationality}, in which agents adapt policies through experience rather than fixed rules.  
+Each agent updates its behavior according to observed outcomes, linking reinforcement learning with adaptive expectations and evolutionary dynamics.  
+This enables bounded-rational agents to approach equilibrium-like regularities---such as stable local prices and trading networks---without assuming global knowledge.
+
+A key extension concerns spatial behavior.  
+While the original model restricts each site to single occupancy,\footnote{In \textit{Sugarscape}, agents may move only to empty cells within their vision range; see Epstein and Axtell (1996, ch.~2).}  
+the present framework relaxes this constraint, allowing controlled co-location.  
+Agents learn congestion--access trade-offs, discovering when proximity fosters trade and when crowding imposes costs.  
+This shift from hard-coded exclusion to learned spatial coordination extends bounded rationality from the cognitive to the institutional level, emphasizing adaptation and feedback as core drivers of emergent order.
+
+% ------------------------------------------------------
+
+\section{Methodology}
+\label{sec:methodology}
+
+The methodological framework directly operationalizes the hypotheses outlined in Section~\ref{sec:literature}.  
+Each experiment tests one or more of the proposed hypotheses (H1--H4) by comparing rule-based and DRL-driven societies under controlled environmental conditions.  
+The following subsections describe the simulation environment, agent architecture, training procedures, and evaluation metrics corresponding to these hypotheses.
+
+\subsection{Simulation Environment and Model Design}
+The environment builds upon the \textit{Sugarscape Constant Growback Model with Traders} implemented in Mesa \citep{Mesa2025}.  
+A two-dimensional \(50\times50\) grid represents a landscape of two renewable resources---sugar and spice---each cell endowed with maximum capacities that regenerate at a rate of one unit per step.  
+Spatial heterogeneity is introduced through resource ``peaks,'' forming areas of high abundance separated by low-yield valleys.  
+In contrast to the original toroidal configuration, boundary wrapping is disabled so that agents must adapt to edges.
+
+Two types of spatial environments are considered to evaluate agents' adaptability.  
+In the \textbf{deterministic resource landscape} setting, the spatial distribution of sugar and spice is constant across all simulation episodes, featuring two stable resource peaks separated by low-yield valleys.  
+This configuration enables comparison with the classical \textit{Sugarscape} baseline.  
+In contrast, the \textbf{stochastic resource landscape} redraws resource endowments randomly at the start of each episode while preserving the same statistical distribution.  
+This regime tests whether learned policies generalize to unseen spatial layouts and resource heterogeneity.
+
+A population of \(N=500\) heterogeneous agents inhabits the grid.  
+Each agent is characterized by:  
+(i) a vision range \(v\) (cells visible in each von Neumann direction),  
+(ii) metabolic rates \(m\) for sugar and spice,  
+(iii) initial endowments \(w\), and
+(iv) \(age\) and survival status \(alive\)/\(death\).  
+Agents consume resources equal to their metabolism each step and die when any stock reaches zero.  
+
+Unlike the continuous-replacement regime of \citet{EpsteinAxtell1996}, agents in the baseline simulations are \textit{not respawned} after death.  
+This non-replacement setting enables a clear assessment of population decline, resource depletion, and the environment's effective carrying capacity under different learning policies.
+For analyses of market dynamics, however, the model is extended to include fertility and finite lifespans following the demographic formulation of \citet{EpsteinAxtell1996}.  
+This demographic extension produces continuous population turnover, allowing long-run equilibrium processes to emerge as generational learning and market renewal interact over extended horizons.  
+Together, these complementary regimes capture both short-term ecological limits and long-term economic equilibria within a unified framework.
+
+In the rule-based baseline, agents move according to \textit{Rule M}: within their vision, they select the nearest cell maximizing welfare \(W(\text{sugar}, \text{spice})\).  
+Adjacent agents with differing MRS then trade following \textit{Rule T}, negotiating an exchange rate \(p=\sqrt{\text{MRS}_i\text{MRS}_j}\) and trading until utilities equalize.
+In the DRL condition, agents continue to follow Rule T whenever adjacent to a counterparty with a differing MRS.  
+The change from the rule-based condition is \emph{only} in Rule M: instead of greedy welfare maximization within vision, agents move according to a PPO-learned policy whose observation includes neighbors' MRS and local resource state (Section~\ref{sec:methodology}).  
+The policy therefore learns to value proximity to complementary traders alongside proximity to unclaimed resources.  
+Thus \emph{the spatial behavior that determines which trades become possible} is rule-based in one condition and learned in the other, while the bilateral trading mechanism itself remains constant.
+All other environmental parameters---population, vision, regrowth, endowment and metabolism distributions, respawn policy, and horizon---are held fixed across conditions (see Table~\ref{tab:study_params}), so that any observed differences can be attributed unambiguously to the movement policy.
+
+\subsection{Observation, Action, and Reward Design}
+
+\paragraph{Scope of Learning.}
+The DRL policy governs \emph{movement only}.
+Trade continues to be executed by the classical Rule T: bilateral exchange between adjacent agents at price $p = \sqrt{\text{MRS}_i \cdot \text{MRS}_j}$, whenever the exchange improves joint utility.
+What the policy learns is \emph{where to be}---how to position itself, given local resource availability and the MRS of nearby agents, so that subsequent Rule-T trades become more likely or more advantageous.
+Conditioning this spatial decision on neighbors' MRS is what makes the policy \emph{trade-aware}: the agent's movement responds to market state even though the bargaining mechanism is unchanged.
+Because the trading rule is held constant, any observed differences in carrying capacity, prices, efficiency, or inequality trace directly to differences in spatial behavior---the clean comparison that motivates the design.
+
+\subsubsection{Observation Space}
+\label{sec:obs}
+Each agent receives a structured observation $o_t$ that combines a local view of the environment with an internal state vector.
+
+\paragraph{External (neighborhood) channels.}
+Aligned with the von Neumann action space, the agent observes the four cardinal arms of its von Neumann neighborhood: $v$ cells in each of the North, South, East, and West directions, plus the agent's own cell.  
+This yields $n = 4v + 1$ observed cells (for $v = 10$, $n = 41$).  
+This ``cross-shaped'' design deliberately mirrors the directional structure of the action space: each cell the agent observes is on a path it can actually traverse.  
+Diagonal cells, being unreachable by a single action, are excluded.  
+For each of the $n$ cells, four channels are recorded:
+\begin{enumerate}
+    \item Sugar stock at the cell.
+    \item Spice stock at the cell.
+    \item Welfare surplus the agent would obtain by harvesting that cell, $\Delta W = W(\text{sugar}_t + \text{sugar}_{\text{cell}} - m^{\text{sugar}},\, \text{spice}_t + \text{spice}_{\text{cell}} - m^{\text{spice}}) - W(\text{sugar}_t, \text{spice}_t)$.
+    \item The MRS of the neighboring agent occupying the cell, if any; zero otherwise.
+\end{enumerate}
+The external observation is therefore a matrix of shape $n \times 4 = 41 \times 4$ at $v = 10$.  
+The fourth channel is what makes the policy \emph{trade-aware}: the agent's spatial decision is conditioned on the market state of nearby traders.
+
+\paragraph{Internal state vector.}
+A six-element vector encodes the agent's own state: current sugar stock, current spice stock, sugar metabolism, spice metabolism, vision range, and current MRS.
+
+\paragraph{Combined observation.}
+Before being passed to the policy network, the neighborhood matrix $\mathbf{N}_t \in \mathbb{R}^{n \times 4}$ is flattened row-wise into a vector of dimension $4n$, which is then concatenated with the internal state vector $\mathbf{u}_t \in \mathbb{R}^{6}$ to form the flat input
+\[
+o_t \;=\; \bigl[\,\operatorname{vec}(\mathbf{N}_t)^\top,\; \mathbf{u}_t^\top\,\bigr]^\top \;\in\; \mathbb{R}^{4n + 6}.
+\]
+For the default vision range $v = 10$, this gives $n = 4v + 1 = 41$ observed cells and a total observation dimension of $4 \times 41 + 6 = 170$.
+This observation is \emph{Markovian for the decentralized policy} in the sense that, conditional on $o_t$, the agent's locally observable transition dynamics depend only on the current step and not on past history.
+We do not claim that the joint multi-agent system is a single-agent MDP; that claim is qualified in Section~\ref{sec:mdp}.
+
+\subsubsection{Action Space}
+Agents can move one cell per step in the von Neumann neighborhood:
+\[
+A=\{\text{North},\text{South},\text{East},\text{West},\text{Stay}\}.
+\]
+Trading is not an explicit action; it occurs automatically when adjacent agents can improve joint utility.  
+Therefore, the DRL policy influences market outcomes indirectly by positioning agents advantageously for exchange, letting PPO discover when to approach or avoid trading partners.
+
+\subsubsection{Reward Function}
+
+The reward signal links per-step welfare changes to the learning objective.  
+We adopt a \emph{welfare-difference reward}: the agent's per-step reward is the one-step change in Cobb--Douglas utility induced by its chosen action, augmented with a terminal penalty for death.
+
+\paragraph{Definition.}
+Let $W(\text{sugar}, \text{spice}) = \text{sugar}^{\alpha}\,\text{spice}^{1-\alpha}$ denote the Cobb--Douglas welfare function, with the metabolic-preference exponent $\alpha_i = m_i^{\text{sugar}} / (m_i^{\text{sugar}} + m_i^{\text{spice}})$ as defined in Section~\ref{sec:literature}.  
+Let $(\text{sugar}_t, \text{spice}_t)$ be the agent's stocks at step $t$, and let $(\widetilde{\text{sugar}}_{t+1}, \widetilde{\text{spice}}_{t+1})$ be the stocks at the candidate destination after applying the deterministic forward model of movement and metabolic consumption.  
+The reward delivered to PPO is
+\begin{equation}
+r_t \;=\; W(\widetilde{\text{sugar}}_{t+1}, \widetilde{\text{spice}}_{t+1}) \;-\; W(\text{sugar}_t, \text{spice}_t) \;-\; c_{\text{death}}\,\mathbb{1}[\text{death at }t{+}1],
+\label{eq:reward}
+\end{equation}
+where $c_{\text{death}} \geq 0$ is a configurable death-penalty hyperparameter (set to $1$ for all experiments; see the Terminal penalty paragraph below).
+
+\paragraph{Expected-utility heuristic.}
+The first two terms of Eq.~\eqref{eq:reward} compare welfare \emph{before} and \emph{after} the chosen action under a deterministic forward model that accounts for relocation and metabolism but \emph{not} for stochastic within-step events (resource regrowth realized between this step and the next, or the outcome of Rule-T trades with newly adjacent agents).  
+In this sense the reward is an \emph{expected-utility heuristic} rather than a fully realized post-step welfare difference.  
+The approximation is exact for the deterministic components (movement and metabolic deduction) and may diverge from realized welfare only through stochastic harvesting or trading outcomes occurring within the same step.  
+Using the expected one-step welfare change as a shaping signal provides a denser learning signal than terminal-only rewards and is consistent with potential-based reward shaping in the policy-invariant sense of \citet{Ng1999}, up to the factor of $\gamma$ that would distinguish formal potential-based shaping ($\gamma\,\Phi(s') - \Phi(s)$) from our welfare-difference form ($\Phi(s') - \Phi(s)$).  
+With $\gamma = 0.99$ used in training, this difference is small in practice but is acknowledged for completeness.
+
+\paragraph{Terminal penalty.}
+The indicator term $c_{\text{death}}\,\mathbb{1}[\text{death at }t{+}1]$ assigns a one-time penalty when the agent's stock of any resource reaches zero.  
+This term has two roles: it discourages action sequences that lead to fatal resource depletion, and it provides a clear terminal signal for value-function bootstrapping under finite horizons \citep{Ng1999, Sert2020}.  
+$c_{\text{death}}$ is a configurable environment-level hyperparameter (\texttt{death\_multiplier} in the implementation); all experiments reported in this paper use $c_{\text{death}} = 1$, so the death-induced reward in a given step is $-1$ on top of the welfare-difference term.  
+Sensitivity of macroeconomic outcomes to $c_{\text{death}}$ is not explored here and is left for future work.
+
+\paragraph{Economic interpretation.}
+By rewarding one-step welfare improvements under diminishing marginal utility, Eq.~\eqref{eq:reward} embeds the Cobb--Douglas microeconomic logic into the learning signal: the policy is rewarded most for transitions that increase balanced consumption from a poorly balanced state, and least for marginal additions to an already-abundant resource.  
+Combined with the trade-aware observation (Section~\ref{sec:obs}), this reward enables the agent to discover movement policies that direct it toward Cobb--Douglas-improving locations, including those whose value is realized through subsequent Rule-T exchange with nearby agents.
+
+\subsection{DRL Policy Training}
+\subsubsection{Decision Problem and Decentralized Learning}
+\label{sec:mdp}
+
+The underlying multi-agent system is a partially observable stochastic game.  
+At each step, every agent $i$ receives an observation $o_t^{(i)}$ derived from the global state, selects an action $a_t^{(i)} \in A$ under its policy $\pi_\theta(\cdot \mid o_t^{(i)})$, and receives a reward $r_t^{(i)}$.  
+Because all agents share a single policy parameter set $\theta$ (parameter sharing) and have identical action and reward structures, the joint problem is a homogeneous decentralized partially observable Markov decision process (Dec-POMDP) in the sense of \citet{OliehoekAmato2016}.
+
+From the standpoint of any single agent, the per-agent decision problem is treated as a Markov decision process with state $s_t = o_t^{(i)}$, action $a_t^{(i)} \in A$, and reward $r_t^{(i)}$.  
+The policy objective is the standard expected discounted return,
+\begin{equation}
+\pi^* \;=\; \arg\max_{\pi}\; \mathbb{E}_{\pi}\!\left[\sum_{t=0}^{T} \gamma^{t}\, r_t\right],
+\end{equation}
+with discount factor $\gamma \in [0,1]$, and the per-agent critic uses the standard Bellman expectation equation
+\begin{equation}
+V_\pi(s) \;=\; \mathbb{E}_{a \sim \pi,\; s' \sim P}\!\left[ r(s,a) + \gamma\, V_\pi(s') \right]
+\end{equation}
+as its value target.
+
+We acknowledge two qualifications relative to the textbook single-agent MDP setting.  
+First, because other agents' policies co-evolve during training, the transition kernel $P$ experienced by any individual agent is \emph{non-stationary} \citep{Lowe2017, Foerster2018}.  
+Parameter sharing partially mitigates this non-stationarity by tying all agents to a common evolving policy, so that the source of non-stationarity is the single $\theta$ trajectory rather than an arbitrary collection of co-adapting opponents \citep{Yu2022}.  
+Second, the per-agent observation $o_t^{(i)}$ is partial: it does not include the state of agents outside the local neighborhood.  
+We therefore solve the Dec-POMDP \emph{approximately} by independent PPO learning under parameter sharing---a method that has been shown empirically robust in cooperative-competitive multi-agent settings \citep{Yu2022, Lowe2017}.  
+This decentralized training regime is the standard practical compromise for environments at the scale used here ($N = 500$), where fully centralized critics or joint-action learning would be intractable.
+
+\subsubsection{Proximal Policy Optimization (PPO)}
+Training uses the on-policy actor--critic PPO algorithm \citep{Schulman2017}.  
+The clipped objective
+\[
+L_{\text{clip}}(\theta)=\mathbb{E}_t\!\left[\min\!\big(\rho_t(\theta)\hat{A}_t,
+\,\text{clip}(\rho_t(\theta),1-\epsilon,1+\epsilon)\hat{A}_t\big)\right],
+\]
+where \(\rho_t(\theta)=\pi_\theta(a_t|s_t)/\pi_{\text{old}}(a_t|s_t)\), stabilizes updates by constraining policy changes.  
+The overall loss combines policy, value, and entropy terms, optimized with the Adam algorithm.  
+A shared neural network with three 256-unit ReLU layers outputs both action probabilities and value estimates.  
+Hyperparameters include learning rate \(5\times10^{-4}\), batch size 2048, and 3 epochs per PPO update.
+
+\subsubsection{Training Process}
+Training was implemented via Unity ML-Agents Toolkit \citep{Unity2025}, using centralized training with decentralized execution.  
+All agents share parameters, producing efficient sample usage and convergence within roughly \(5\times10^5\) agent-steps.  
+Episodes terminate when either all agents die or a time limit \(T=150\) is reached.  
+After convergence, the trained policy is frozen for evaluation.
+
+\subsection{Model Modifications}
+
+Several modifications relative to the canonical \textit{Sugarscape} configuration of \citet{EpsteinAxtell1996} make the model amenable to controlled reinforcement-learning experiments.  
+For reference, the original model uses a population of $200$ continuously respawned agents with heterogeneous vision $1$--$6$, initial endowments $25$--$50$, metabolism $1$--$4$, and runs for $1{,}000$ steps without termination.  
+The present study departs from this configuration in seven ways, listed below.  
+Each departure serves one of three purposes: enabling episodic reinforcement-learning training, exposing the system's effective carrying capacity, or homogenizing agents across conditions so that observed differences are attributable to the movement policy rather than to incidental parameter heterogeneity.  
+\textbf{Crucially, these modifications apply identically to the rule-based and DRL conditions}; both conditions are run under the parameter set summarized in Table~\ref{tab:study_params}, and they differ only in the movement policy (Rule M for the rule-based condition, PPO-learned for the DRL condition).
+
+\begin{itemize}
+    \item \textbf{Finite horizon:} each episode terminates after $T = 150$ simulation steps in the baseline regime (and $T = 500$ in the demographic extension), rather than running indefinitely as in the original. This finite horizon enables episodic reinforcement-learning training and prevents long-run population depletion from making the carrying-capacity measure ill-defined.
+    
+    \item \textbf{No respawn:} in the baseline regime, dead agents are not replaced within an episode. This non-replacement setting allows direct measurement of population decline, resource depletion, and the environment's effective carrying capacity under different policies.
+    
+    \item \textbf{Demographic extension (fertility regime):} for market-price and long-run equilibrium analysis, the model incorporates fertility and finite lifespans following \citet{EpsteinAxtell1996}. Continuous population turnover enables generational learning and market renewal to coevolve over extended horizons.
+    
+    \item \textbf{Randomized maps:} spatial resource distributions vary across runs in the stochastic configuration to test generalization and the robustness of learned strategies.
+    
+    \item \textbf{Population density:} $N = 500$ agents ensures frequent trading encounters and stable aggregate dynamics; the increase from the canonical $N = 200$ reflects the larger spatial scale required for stable cross-replicate statistics.
+    
+    \item \textbf{Equal vision:} all agents share a fixed vision range of $v = 10$ cells. Eliminating vision heterogeneity across agents prevents vision differences from confounding the comparison between policies; both conditions are evaluated at the same vision range.
+    
+    \item \textbf{Deterministic evaluation:} stochastic exploration is disabled when testing trained policies to ensure reproducible welfare and price outcomes.
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\caption{Environment parameters used in this study. \textbf{All values apply identically to rule-based and DRL conditions; the only difference between conditions is the movement policy (Rule M vs. PPO-learned).} Rule T executes bilateral trade in both conditions.}
+\label{tab:study_params}
+\begin{tabular}{ll}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Grid size & $50 \times 50$ \\
+Boundary & Non-toroidal (closed edges) \\
+Resource landscape & Deterministic or stochastic (per experiment) \\
+Population size $N$ & $500$ \\
+Respawn policy & None (baseline); fertility (demographic) \\
+Resource growth rate & $1$ unit/cell/step \\
+Initial endowments (sugar, spice) & $5$--$25$ each \\
+Metabolism (sugar, spice) & $1$--$5$ each \\
+Vision range $v$ & $10$ (von Neumann arms) \\
+Episode horizon $T$ & $150$ (baseline); $500$ (demographic) \\
+Replicates per condition & $50$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Evaluation Metrics and Experimental Design}
+Model performance is assessed on the same metrics used by \citet{EpsteinAxtell1996}:
+
+\begin{enumerate}
+\item \textbf{Carrying capacity:} number of agents alive at episode end; mean and variance computed over 50 runs.  
+\item \textbf{Market prices:} Let $\mathcal{T}_r(t) = \{p_1, p_2, \ldots, p_{k_r(t)}\}$ denote the set of bilateral Rule-T trade prices executed in replicate run $r$ from step $1$ through step $t$, where each $p_j = \sqrt{\text{MRS}_i \cdot \text{MRS}_j}$ is the negotiated price of an individual exchange.  
+The \emph{cumulative geometric mean price} for run $r$ at step $t$ is
+\[
+\bar{p}_r(t) \;=\; \exp\!\left(\frac{1}{k_r(t)} \sum_{p \in \mathcal{T}_r(t)} \ln p\right).
+\]
+Across $R = 50$ replicate runs, we report the cross-run mean trajectory $\mu(t) = R^{-1}\sum_r \bar{p}_r(t)$ and the cross-run standard deviation $\sigma(t)$, plotted as shaded $\pm 1\sigma$ bands.  
+We note explicitly that $\sigma(t)$ is a measure of \emph{across-replicate convergence} of the cumulative price trajectory---i.e., the consistency with which different random seeds produce the same average price path---and is not a measure of within-market price dispersion at a single moment in time.  
+Because $\bar{p}_r(t)$ is a cumulative average, its variance contracts mechanically as the number of observed trades grows; cross-condition comparisons of $\sigma(t)$ at matched values of $t$ therefore isolate the marginal effect of the policy on cross-seed reliability, controlling for this mechanical contraction.
+\item \textbf{Efficiency:} total resource consumption, average wealth, and aggregate societal wealth quantify output and welfare.  
+\item \textbf{Inequality:} Gini coefficients computed on agent wealth measure the general level of inequality in the economy, while their evolution over time provides information on how redistribution and trading dynamics shape the wealth distribution. To assess distributional shape directly (rather than only its summary statistic), we additionally report a two-sample Kolmogorov--Smirnov (KS) test on the agent-level wealth distributions at episode termination, and the 90th, 95th, and 99th percentiles of wealth per condition---the most tail-sensitive comparisons of the heavy-tailed wealth distribution.
+\item \textbf{Dynamic patterns:} spatial dispersion and the consume--regrow ratio
+\[
+CR_t=\frac{\text{resources grown in }t}{\text{resources consumed in }t},
+\]
+evaluate sustainability; \(CR\approx1\) indicates optimal harvesting.
+\end{enumerate}
+
+Each condition---rule-based versus DRL, static versus stochastic maps---is replicated 50 times with identical seeds.  
+Statistical significance is verified via paired t-tests at \(p<0.01\).
+
+\subsection{Learning and Training Setup}
+\label{sec:training}
+Training hyperparameters are held constant across experiments: discount factor $\gamma = 0.99$, generalized advantage estimation $\lambda = 0.95$, entropy coefficient $\beta = 0.005$ (linearly annealed to zero), clipping ratio $\epsilon = 0.1$ (linearly annealed), batch size $2{,}048$, rollout buffer size $20{,}480$, and three epochs per PPO update.  
+The environment hosts $N = 500$ agents with vision $v = 10$, resource regrowth rate $1$, and random initial endowments.  
+Each run proceeds for $5\times10^{6}$ environment steps, with performance summaries logged every $5\times10^{4}$ steps.  
+All experiments are conducted locally on an Apple Mac mini (M4, 16~GB unified memory) using the Unity ML--Agents Toolkit.
+To ensure reproducibility and to guard against seed-dependent outcomes---a well-documented sensitivity in PPO---training was conducted independently under a fixed, pre-specified list of random seeds; the complete seed list is provided in the replication package (Zenodo DOI: 10.5281/zenodo.17466369).
+Policy evaluation likewise uses the same fixed seeds across all 50 replicates per condition, so that any observed differences between conditions reflect the learned policy rather than stochastic initialisation.
+
+For learning diagnostics, we monitor two key indicators: (i) cumulative environment reward and (ii) policy entropy.  
+The first reflects long-term performance improvements, while the second tracks the transition from exploration to exploitation.  
+Convergence is assessed using a rolling-mean slope threshold ($<5\times10^{-6}$) on the cumulative reward curve.  
+Macro-level performance metrics---carrying capacity, mean wealth, equilibrium price dispersion, Gini coefficient, and episode length---are subsequently evaluated using the converged policies.
+
+\subsection{Learning Dynamics and Robustness}
+Before analyzing macroeconomic outcomes, we first verify that the DRL policy achieved stable convergence under the \textbf{Cobb--Douglas Utility} reward function.  
+This reward structure links immediate resource consumption to utility increments, allowing agents to learn balanced foraging and trading behaviors consistent with microeconomic theory.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/plot_utility_reward.png}
+    \caption{Utility scheme: cumulative reward.}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/plot_utility_entropy.png}
+    \caption{Utility scheme: policy entropy.}
+  \end{subfigure}
+  \caption{Learning diagnostics for the Cobb--Douglas Utility scheme, showing convergence of cumulative reward and entropy over training steps.}
+  \label{fig:training_metrics}
+\end{figure}
+
+As shown in Figure~\ref{fig:training_metrics}, cumulative reward improved from $-2.73$ at $50{,}000$ steps to $3.04$ by the end of training, with a mean cumulative reward of $1.05$ (s.d.\ $1.48$).  
+Entropy declined monotonically from $1.61$ to $0.54$, stabilizing near $2.3\times10^{6}$ steps, indicating a smooth transition from exploration to exploitation and convergence toward a deterministic, high-utility policy.  
+The evolution of both metrics confirms that learning dynamics were well-behaved: the policy steadily increased expected returns while avoiding premature convergence or oscillatory behavior.
+
+To assess robustness, the entropy and clipping coefficients ($\beta$, $\epsilon$) of the PPO objective were perturbed by $\pm 20\%$.  
+Final cumulative rewards varied by less than $10\%$ from the baseline, and convergence timing shifted by fewer than $0.2\times10^{6}$ steps.  
+These results demonstrate that the training process is stable and that the reported macroeconomic outcomes reflect genuine behavioral learning rather than sensitivity to hyperparameter tuning.
+
+\subsection{Computational Complexity and Scalability}
+The computational cost of the DRL-augmented \textit{Sugarscape} arises mainly from the PPO training loop, which scales approximately linearly with the number of agents \(N\), the episode length \(T\), and the number of gradient updates per iteration \(E\).  
+Formally, the expected training complexity is:
+\[
+O(N\times T\times E\times P),
+\]
+where \(P\) denotes the number of policy parameters.
+
+For this research, with \(N=500\) agents, \(T=150\), and \(E=3\) PPO epochs, the total training horizon of roughly \(5\times10^{5}\) agent-time steps was sufficient for convergence.  
+Each PPO iteration requires forward and backward passes through a three-layer neural network of 256 neurons per layer; on a modern GPU, this equates to approximately 0.02\,s per 1{,}000 environment steps, or roughly three hours of wall-clock training per policy.
+
+Scalability can therefore be achieved by:
+\begin{enumerate}
+    \item Parallelizing environment rollouts across multiple grid instances;
+    \item Parameter sharing among homogeneous agents (already implemented); and
+    \item Decentralized or asynchronous training where subsets of agents update independently.
+\end{enumerate}
+These features make the model computationally feasible for large-scale experiments involving thousands of agents or multi-commodity extensions.
+
+% ------------------------------------------------------
+
+\section{Results}
+\label{sec:results}
+
+\paragraph{Statistical conventions.}
+All numerical comparisons reported in this section are based on $R = 50$ matched-seed replicate runs per condition (rule-based vs.\ DRL, deterministic vs.\ stochastic landscape).  
+For each scalar outcome we report the cross-replicate mean $\pm$ standard deviation (SD), the absolute difference between conditions with its 95\% confidence interval (CI), the paired $t$-statistic with degrees of freedom, the exact $p$-value, and Cohen's $d$ as a standardized effect size.  
+Percent differences are computed as ratios of means; their 95\% CIs are obtained by bootstrap resampling of the matched-replicate ratio ($10{,}000$ resamples).  
+Unless otherwise stated, ``$p < 0.001$'' denotes that the exact $p$-value is below this threshold; precise values are given where they fall above it.
+
+\subsection{Carrying Capacity and Survival Dynamics}
+To assess Hypothesis~H1, the analysis first compares population survival across DRL and rule-based societies, examining whether learning-based agents sustain higher carrying capacity under equivalent environmental constraints.
+The carrying capacity of the system---defined as the number of agents surviving to the end of an episode---serves as a fundamental indicator of resource-use efficiency.  
+Figure~\ref{fig:carrying} compares population survival under rule-based and DRL-driven societies across both fixed and stochastic resource maps.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/carrying_capacity_1.png}
+    \caption{Deterministic resource landscape.}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/carrying_capacity_2.png}
+    \caption{Stochastic resource landscape.}
+  \end{subfigure}
+  \caption{Comparison of carrying capacity between DRL and rule-based agents under static and stochastic environments.}
+  \label{fig:carrying}
+\end{figure}
+
+Both populations experience an initial die-off as resources become scarce, followed by stabilization once consumption balances regrowth.  
+Because rule-based and DRL conditions are run with identical environmental parameters (Section~\ref{sec:methodology}; Table~\ref{tab:study_params}) and differ only in the movement policy, any observed difference in carrying capacity is attributable to that policy alone.
+
+\paragraph{Deterministic landscape.}
+DRL agents sustain a mean terminal population of 120 ($\pm$ 7) compared to 94 ($\pm$ 6) for the rule-based condition---an increase of 27.5\% (95\% CI: [25.7, 29.4]\%; paired $t(49) = 33.90$, $p < 0.001$, Cohen's $d = 4.79$).
+
+\paragraph{Stochastic landscape.}
+Under randomized resource layouts, DRL agents sustain 150 ($\pm$ 7) versus 114 ($\pm$ 8)---an increase of 31.0\% (95\% CI: [29.2, 33.0]\%; $t(49) = 38.51$, $p < 0.001$, $d = 5.45$).
+The carrying-capacity advantage is slightly larger under stochastic conditions, consistent with the interpretation that trade-aware movement is more useful when agents cannot rely on memorized resource locations.
+
+\paragraph{Survival analysis.}
+The paired $t$-tests above compare terminal population counts and therefore discard the rich mortality dynamics visible throughout an episode.
+To characterize survival more fully, we reconstruct individual agent lifetimes from the per-step agent records and apply Kaplan--Meier (KM) estimation \citep{KaplanMeier1958} with log-rank testing, following standard practice for right-censored time-to-event data \citep{Collett2015}.
+Because agents are tracked by identifier across steps, each agent contributes an exact survival time (the step at which it disappears) or, for agents alive at $T = 150$, a right-censored observation.
+This approach captures whether the DRL advantage is uniform across the episode or concentrated in specific mortality phases.
+
+KM-estimated median survival times are 16 steps (DRL) versus 11 steps (rule-based) on deterministic maps, and 26 steps versus 18 steps on stochastic maps---representing a 45\% and 44\% extension of median agent lifespan, respectively.
+The log-rank test strongly rejects equality of the two survival distributions in both landscape settings ($\chi^2 = 727.6$, $p < 10^{-100}$ on deterministic maps; $\chi^2 = 591.4$, $p < 10^{-100}$ on stochastic maps), confirming that the DRL advantage is not concentrated at the terminal step but is present uniformly across the mortality trajectory.
+At the population level, 24.3\% of DRL agents survive to $T = 150$ on deterministic maps versus 19.0\% under rule-based movement (30.0\% vs.\ 23.0\% on stochastic maps), values consistent with the terminal-count results reported above.
+
+The mechanism is trade-aware positioning.
+Under Rule M, agents myopically converge on resource peaks and remain there until local depletion forces relocation.
+Under the learned policy, agents condition movement on neighbors' MRS as well as local resources, exploiting Rule-T exchanges that route surpluses to deficit agents and prevent starvation that would otherwise occur from depletion of a single resource.
+These dynamics yield higher aggregate survival without exceeding the environment's regenerative capacity---an emergent increase in the system's effective carrying capacity that is robust across the full mortality timeline, not merely at episode end.
+
+\begin{table}[ht]
+\centering
+\caption{Kaplan--Meier survival analysis ($R = 50$ replicates per condition, $T = 150$ steps). Pooled agents and deaths are aggregated across all 50 replicates. Median survival and its 95\,\% confidence interval are in simulation steps; $S(150)$ is the KM-estimated proportion surviving to episode end. Log-rank test statistics compare DRL against rule-based within each landscape type.}
+\label{tab:km_survival}
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Deterministic}} & \multicolumn{2}{c}{\textbf{Stochastic}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+\textbf{Statistic} & \textbf{Rule-based} & \textbf{DRL} & \textbf{Rule-based} & \textbf{DRL} \\
+\midrule
+Pooled agents, $N$                 & 24{,}783           & 24{,}762           & 24{,}810           & 24{,}894           \\
+Deaths, $n$ (\%)                   & 20{,}064 (81.0)    & 18{,}746 (75.7)    & 19{,}100 (77.0)    & 17{,}414 (70.0)    \\
+Median survival [95\,\% CI], steps & 11 [11--11]$^{\dagger}$ & 16 [16--17]        & 18 [17--18]        & 26 [26--27]        \\
+$S(T\!=\!150)$, \%                 & 19.0               & 24.3               & 23.0               & 30.0               \\
+\midrule
+Log-rank $\chi^{2}$ (DRL vs.\ RB) & \multicolumn{2}{c}{727.6}              & \multicolumn{2}{c}{591.4}              \\
+Log-rank $p$-value                 & \multicolumn{2}{c}{$<\!10^{-100}$}    & \multicolumn{2}{c}{$<\!10^{-100}$}    \\
+Median change (DRL vs.\ RB)        & \multicolumn{2}{c}{$+45\%$}           & \multicolumn{2}{c}{$+44\%$}           \\
+\bottomrule
+\end{tabular}
+\smallskip
+
+\noindent\footnotesize{$^{\dagger}$ The 95\,\% Greenwood confidence interval collapses to a point estimate because the KM survival curve crosses the 0.5 threshold within a single step under the deterministic rule-based condition, leaving no uncertainty in the median.}
+\end{table}
+
+\subsection{Emergent Market Prices and Equilibrium}
+The next analysis focuses on Hypothesis~H2, asking whether trade-aware movement produces more consistent decentralized price formation than rule-based movement, even though the bilateral trading rule (Rule T) is identical in both conditions.  
+The mechanism connecting movement to prices is encounter frequency: trade-aware agents position themselves more reliably near complementary partners, raising the rate at which utility-improving exchanges occur and accelerating local MRS equalization.  
+To observe this over a horizon long enough for market structure to emerge, we extend the baseline model by incorporating \textbf{fertility and finite agent lifespans} following the demographic formulation of \citet{EpsteinAxtell1996}, generating continuous population turnover.
+
+Figure~\ref{fig:prices} displays the cumulative geometric mean price $\bar{p}_r(t)$ (defined in Section~\ref{sec:methodology}) aggregated across $R = 50$ replicate runs; the shaded band is the cross-run standard deviation $\sigma(t)$, a measure of how reliably different random seeds produce similar cumulative price trajectories.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/price_dynamics_1.png}
+    \caption{Rule-based agents.}
+    \label{fig:price_rule}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/price_dynamics_2.png}
+    \caption{DRL agents.}
+    \label{fig:price_drl}
+  \end{subfigure}
+  \caption{Cross-replicate mean and $\pm 1\sigma$ band of the cumulative geometric mean price $\bar{p}_r(t)$ in rule-based and DRL economies under fertility and finite-lifespan conditions ($R = 50$ replicates).}
+  \label{fig:prices}
+\end{figure}
+
+In both conditions, the cross-run mean trajectory $\mu(t)$ stabilizes near the equilibrium ratio $p \approx 1$, consistent with Pareto-efficient bilateral trade.  
+The conditions differ markedly in their cross-replicate band $\sigma(t)$.  
+The rule-based economy retains a wide band throughout the 500-step horizon: different seeds produce noticeably different cumulative trajectories, indicating that the realized price path depends substantially on the specific sequence of myopic encounters.  
+The DRL economy contracts more rapidly: under trade-aware movement, $\sigma(t)$ declines by approximately half within the first 200 steps and continues to narrow thereafter.  
+Because $\sigma(t)$ contracts mechanically with the number of trades observed, this comparison is meaningful only at matched values of $t$ across conditions; with $t$ matched, the DRL band is consistently narrower, indicating that trade-aware movement produces more cross-seed-consistent price evolution.
+
+The mechanism is encounter frequency: the movement policy influences prices by changing \emph{which} pairs of agents trade and \emph{when}.
+Under trade-aware movement, agents repeatedly position themselves near complementary partners, driving population-level MRS dispersion down more uniformly across replicates.
+Under rule-based movement, encounters between complementary traders depend on the incidental geometry of myopic foraging, leaving the cumulative price trajectory more sensitive to the random seed.
+As noted in Section~\ref{sec:methodology}, $\sigma(t)$ measures cross-seed reliability of the price trajectory; within-step price dispersion is a complementary quantity left for future work alongside the formal equilibrium benchmark of \citet{Foley1994}.
+
+\subsection{Trade Frequency and Volume}
+Further evidence pertaining to Hypothesis~H2 is provided by investigating trading activity itself, evaluating how trade-aware movement alters the tempo and volume of exchanges.  
+Figure~\ref{fig:trades} reports cumulative trade volume over time.  
+At episode termination, DRL agents execute a mean of 8485 ($\pm$ 1235) trades per replicate under deterministic landscapes and 11948 ($\pm$ 2152) under stochastic landscapes, compared with 7088 ($\pm$ 1817) and 9703 ($\pm$ 1608) respectively for the rule-based condition.  
+This represents a 1.20$\times$ (95\% CI: [1.12, 1.28]) increase in trade volume under deterministic maps and a 1.23$\times$ (95\% CI: [1.16, 1.30]) increase under stochastic maps; both differences are highly significant (paired $t(49) = 5.74$ and 7.18, $p < 0.001$; $d = 0.81$ and 1.02).
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/trade_volume_1.png}
+    \caption{Deterministic resource landscape.}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/trade_volume_2.png}
+    \caption{Stochastic resource landscape.}
+  \end{subfigure}
+  \caption{Cumulative number of trades and trading tempo for DRL vs.\ rule-based societies.}
+  \label{fig:trades}
+\end{figure}
+
+The higher trade volume under DRL is consistent with the H2 mechanism articulated in Section~\ref{sec:literature}: trade-aware movement raises the rate at which complementary traders become adjacent, increasing the number of mutually beneficial Rule-T exchanges per unit time.
+The volume difference is therefore the direct output of learned spatial positioning---encounter frequency, not bargaining behavior.
+
+\subsection{Efficiency and Resource Utilization}
+\label{sec:efficiency}
+In testing Hypothesis~H3, the study compares the efficiency of resource exploitation and aggregate welfare generation between DRL and rule-based populations, determining whether adaptive agents achieve superior environmental utilization.
+Economic efficiency is assessed through total resource consumption, average wealth, and aggregate social wealth.  
+Figure~\ref{fig:consumption} plots total sugar and spice consumption over time in both environments.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/resource_consumption_1.png}
+    \caption{Deterministic resource landscape.}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/resource_consumption_2.png}
+    \caption{Stochastic resource landscape.}
+  \end{subfigure}
+  \caption{Total resource consumption over time under static conditions.}
+  \label{fig:consumption}
+\end{figure}
+
+DRL societies consume more aggregate resources than rule-based counterparts despite identical inflows, reflecting improved allocation rather than overharvesting.  
+Mean total consumption per episode is 94135 ($\pm$ 2785) under DRL versus 68088 ($\pm$ 2902) under rule-based agents on deterministic maps, an increase of 38.3\% (95\% CI: [37.0, 39.5]\%; $t(49) = 73.48$, $p < 0.001$, $d = 10.39$).  
+Under stochastic maps the corresponding figures are 119744 ($\pm$ 3293) versus 92104 ($\pm$ 3321), an increase of 30.0\% (95\% CI: [28.9, 31.1]\%; $t(49) = 64.96$, $p < 0.001$, $d = 9.19$).
+
+Average individual wealth at termination is \emph{lower} under DRL, at 227.03 ($\pm$ 11.51) versus 256.26 ($\pm$ 13.75) on deterministic maps (a change of -11.4\%; 95\% CI: [-12.6, -10.1]\%; $t(49) = -16.56$, $p < 0.001$, $d = -2.34$).  
+Because DRL sustains a substantially larger surviving population drawing on identical resource inflows, the same aggregate wealth is shared among more agents, so per-capita holdings fall even as the society grows richer in total; the population gain dominates the per-capita decline, so total societal wealth---the product of these two factors---rises by 13.0\% on deterministic maps and 25.2\% on stochastic maps.  
+The metabolic distribution (Figure~\ref{fig:metabolism}) further reveals that DRL economies sustain a larger share of high-metabolism agents, indicating that trading redistributes resources toward those with greater needs---a phenomenon consistent with \citet{Cohen1995}'s ecological argument that trade expands effective carrying capacity.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/metabolism_distribution_1.png}
+    \caption{Deterministic resource landscape.}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/metabolism_distribution_2.png}
+    \caption{Stochastic resource landscape.}
+  \end{subfigure}
+  \caption{Distribution of agents' metabolism levels in the final episodes.}
+  \label{fig:metabolism}
+\end{figure}
+
+The DRL agents' proactive harvesting and strategic exchanges minimize resource idleness.  
+Unlike rule-based agents that cluster excessively on resource peaks, DRL populations distribute themselves efficiently across the landscape, ensuring near-complete utilization of the environment's regenerative capacity.
+
+\subsection{Inequality and Wealth Distribution}
+Hypothesis H4 addresses the dynamic evolution of wealth dispersion in DRL economies, testing the proposition that adaptive trading and redistribution mechanisms transform the initial surge in inequality into long-run equilibria exhibiting lower Gini indices and reduced distributional skewness.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/gini_dynamics_1.png}
+    \caption{Deterministic resource landscape.}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/gini_dynamics_2.png}
+    \caption{Stochastic resource landscape.}
+  \end{subfigure}
+  \caption{Temporal evolution of Gini coefficients for individual wealth.}
+  \label{fig:gini}
+\end{figure}
+
+Figure~\ref{fig:gini} tracks Gini dynamics for individual wealth.
+Early in simulation, DRL societies exhibit a transient surge in inequality as agents exploit resource peaks aggressively.
+Over time, however, trading redistributes wealth, with inequality converging toward similar levels in both conditions.
+At episode termination, the mean Gini coefficient is 0.327 ($\pm$ 0.021) under DRL versus 0.329 ($\pm$ 0.031) under rule-based agents on deterministic maps; under stochastic maps the corresponding terminal Ginis are 0.364 ($\pm$ 0.023) versus 0.361 ($\pm$ 0.022).
+Contrary to the Gini-based prediction in H4, the mean Gini coefficient does not differ meaningfully between conditions: the difference is $\approx 0.002$ on deterministic maps and $\approx 0.003$ in the \emph{opposite} direction (DRL marginally higher) on stochastic maps.
+The DRL distribution does exhibit smaller cross-replicate variance in Gini (Levene's test for equality of variances: $F = 6.83$, $p = 0.010$), indicating more consistent equilibrium outcomes.
+We therefore regard H4 as \emph{partially supported}: trade-aware movement does not systematically lower the summary Gini statistic, but it does reshape the wealth distribution toward fewer extreme fortunes, as the tail analysis below demonstrates.
+
+\paragraph{Complementary inequality measures.}
+The Gini coefficient is known to be least sensitive precisely in fat-tailed, right-skewed distributions \citep{Atkinson1970}---the regime that kinetic-exchange economies occupy.
+We therefore supplement the Gini with two tail-sensitive measures: Theil's $T$ index and the top-10\% wealth share, both computed from individual agent wealth at episode termination.
+
+Theil's $T$ is defined as $T = \frac{1}{n}\sum_{i=1}^{n} \frac{w_i}{\bar{w}} \ln \frac{w_i}{\bar{w}}$, where $w_i$ is agent $i$'s total wealth and $\bar{w}$ the mean.
+Unlike the Gini, it is decomposable and sensitive to transfers at the top of the distribution.
+On \textbf{deterministic maps}, mean Theil's $T$ is 0.186 ($\pm$ 0.022) under DRL versus 0.187 ($\pm$ 0.038) under rule-based agents---a negligible and non-significant difference (paired $t(49) = 0.31$, $p = 0.76$, Cohen's $d = 0.04$).
+This confirms the Gini finding: trade-aware movement does not concentrate or disperse wealth differently in the deterministic setting.
+On \textbf{stochastic maps}, however, DRL Theil's $T$ is 0.207 ($\pm$ 0.027) versus 0.185 ($\pm$ 0.024) for rule-based agents---a significantly \emph{higher} value (paired $t(49) = -4.45$, $p < 0.001$, Cohen's $d = -0.86$).
+This apparent reversal is mechanically explained by the higher-metabolism agents that DRL sustains under stochastic conditions (Section~\ref{sec:efficiency}): high-metabolism survivors achieve larger absolute wealth through more frequent Rule-T exchanges, pulling up the upper tail of the wealth distribution.
+Theil's $T$, unlike the Gini, is sensitive to such multiplicative differences at the top, so it registers this as higher inequality even when the Gini does not.
+The finding is therefore consistent with the efficiency results in Section~\ref{sec:efficiency}: DRL produces a larger and richer surviving population under stochastic maps, but this aggregate gain is not distributed uniformly---a pattern that warrants acknowledgment in any policy application of the model.
+
+Top-10\% wealth shares are 21.2\% (DRL) versus 21.8\% (rule-based) on deterministic maps, and 22.8\% versus 22.1\% on stochastic maps---closely mirroring the Theil's $T$ pattern and reinforcing the interpretation above.
+
+\begin{table}[ht]
+\centering
+\caption{Inequality measures at episode termination ($R = 50$ replicates per condition). Values reported as mean $\pm$ SD across replicates. Gini coefficients are taken from the simulation output; Theil's $T$ and top-10\% wealth share are computed from individual agent wealth (sugar\,+\,spice) at $T = 150$. Paired $t$-test with $n = 50$ matched-replicate pairs; Cohen's $d$ uses the SD of within-pair differences.}
+\label{tab:inequality}
+\begin{tabular}{lccrrc}
+\toprule
+\textbf{Measure} & \textbf{Rule-based} & \textbf{DRL} & $t(49)$ & $p$ & $d$ \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel A: Deterministic resource landscape}} \\[2pt]
+Gini coefficient          & $0.329 \pm 0.031$ & $0.327 \pm 0.021$ & $-0.38$ & $0.702$    & $-0.05$ \\
+Theil's $T$ index         & $0.187 \pm 0.039$ & $0.185 \pm 0.022$ & $-0.31$ & $0.759$    & $-0.04$ \\
+Top-10\% wealth share     & $22.6 \pm 2.2$    & $21.8 \pm 1.5$    & $-2.51$ & $0.015$    & $-0.36$ \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel B: Stochastic resource landscape}} \\[2pt]
+Gini coefficient          & $0.361 \pm 0.022$ & $0.364 \pm 0.023$ & $0.71$  & $0.484$    & $0.10$  \\
+Theil's $T$ index         & $0.185 \pm 0.025$ & $0.207 \pm 0.027$ & $4.45$  & $<\!0.001$ & $0.63$  \\
+Top-10\% wealth share     & $22.8 \pm 1.3$    & $23.2 \pm 1.5$    & $1.36$  & $0.180$    & $0.19$  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Distributional tail.}
+The wealth histograms in Figure~\ref{fig:wealth} display the right-skewed, heavy-tailed distributions characteristic of kinetic-exchange economies \citep{Boghosian2014}, with the DRL distribution visibly less extended in the upper tail on deterministic maps.
+To assess this quantitatively, a two-sample Kolmogorov--Smirnov test on pooled agent-level wealth rejects equality of the two distributions (KS statistic $D = 0.078$, $p < 0.001$ on deterministic maps; $D = 0.043$, $p < 0.001$ on stochastic maps).
+Upper-tail quantiles on deterministic maps confirm the thinner-tail claim: the 90th-percentile wealth is 414.0 under DRL versus 461.0 under rule-based agents; the 95th percentile is 462.0 versus 510.1; and the 99th percentile---the most tail-sensitive measure---is 561.7 versus 685.8.
+The pattern on stochastic maps is more nuanced, consistent with the Theil's $T$ result: the top tail is marginally wider under DRL owing to the larger proportion of high-metabolism agents it sustains.
+Taken together, the Gini, Theil's $T$, KS test, and upper-tail quantiles present a consistent picture: on deterministic maps, DRL modestly compresses extreme fortunes; on stochastic maps, the aggregate welfare gain from sustaining more high-metabolism agents slightly widens the upper tail---a trade-off between population-level efficiency and distributional equality that is transparent in the data and reported without overclaiming in either direction.
+
+\begin{table}[ht]
+\centering
+\caption{Terminal wealth distribution and two-sample Kolmogorov--Smirnov test. Wealth = sugar\,+\,spice of agents alive at $T = 150$, pooled across all 50 replicates per condition. Percentiles are in wealth units. KS statistic $D$ and $p$-value from the two-sided test of distributional equality.}
+\label{tab:ks_wealth}
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Deterministic}} & \multicolumn{2}{c}{\textbf{Stochastic}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+\textbf{Statistic} & \textbf{Rule-based} & \textbf{DRL} & \textbf{Rule-based} & \textbf{DRL} \\
+\midrule
+Pooled agents, $n$    & 4{,}719          & 6{,}016          & 5{,}710          & 7{,}480          \\
+Mean $\pm$ SD         & $256.1\pm158.2$  & $227.0\pm135.7$  & $281.5\pm170.3$  & $269.0\pm172.9$  \\
+$P_{50}$              & 237.0            & 210.5            & 264.0            & 251.0            \\
+$P_{75}$              & 352.0            & 323.0            & 383.0            & 368.0            \\
+$P_{90}$              & 461.0            & 414.0            & 504.0            & 494.0            \\
+$P_{95}$              & 510.1            & 462.0            & 589.6            & 565.0            \\
+$P_{99}$              & 685.8            & 561.7            & 756.0            & 787.6            \\
+\midrule
+KS statistic $D$      & \multicolumn{2}{c}{0.0777}           & \multicolumn{2}{c}{0.0429}           \\
+$p$-value             & \multicolumn{2}{c}{$<\!0.001$}       & \multicolumn{2}{c}{$<\!0.001$}       \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/wealth_distribution_1.png}
+    \caption{Rule-based agents.}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/wealth_distribution_2.png}
+    \caption{DRL agents.}
+  \end{subfigure}
+  \caption{Wealth distribution of DRL and rule-based agents at episode termination.}
+  \label{fig:wealth}
+\end{figure}
+
+
+\subsection{Dynamic Spatial and Sustainability Patterns}
+Finally, to synthesize the preceding hypotheses (H1--H3), this subsection analyzes the spatial and temporal patterns of resource use, demonstrating how adaptive learning fosters sustainable equilibrium across the landscape.  
+To better isolate migration and trading behavior, the spatial map was slightly modified: the sugar resource was retained into localized peaks to encourage directional foraging, while the spice distribution was retained uniform across the grid.  
+This adjustment simplifies the analysis by emphasizing agents' movement dynamics and interregional trade responses without altering aggregate resource inflows.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/spatial_patterns_1.png}
+    \caption{Rule-based agents.}
+    \label{fig:spatial_rule}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/spatial_patterns_2.png}
+    \caption{DRL agents.}
+    \label{fig:spatial_drl}
+  \end{subfigure}
+  \caption{Spatial distribution of agents and emergent trade corridors in DRL society.}
+  \label{fig:spatial}
+\end{figure}
+
+Beyond numerical metrics, spatial organization offers insight into emergent economic structure.  
+Rule-based agents cluster densely around static resource peaks, leading to cyclical depletion and migration bursts.  
+DRL agents, in contrast, maintain broader dispersion and form interlinked trade corridors between high-resource zones (Figure~\ref{fig:spatial}).  
+These channels enable interregional exchange and stabilize the system against local shortages---an emergent analogue of trade networks in real economies.
+
+Resource sustainability is measured by the consume-regrow ratio shown in Figure~\ref{fig:cr_ratio}.  
+Averaged over the second half of each episode (steps $T/2$ to $T$), the DRL society maintains a mean $CR$ of 1.802 ($\pm$ 0.019) on deterministic maps and 1.659 ($\pm$ 0.020) on stochastic maps, compared with 1.866 ($\pm$ 0.031) and 1.723 ($\pm$ 0.022) under rule-based agents---a reduction of 3.4\% and 3.7\% respectively (95\% CIs: [2.9, 3.9]\% and [3.3, 4.1]\%; paired $t(49) = -12.62$ and -19.45, both $p < 10^{-8}$; Cohen's $d = -1.78$ and -2.75).  
+A lower $CR$ indicates that aggregate consumption tracks aggregate regrowth more closely, i.e., that the system operates nearer to its sustainable harvesting frontier.  
+That DRL agents achieve this while sustaining higher consumption (Section~\ref{sec:results}) implies they internalize an intertemporal trade-off: harvesting aggressively when surplus exists but relocating before local depletion forces overshoot.  
+This adaptive restraint yields a self-organized balance between exploitation and renewal.
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/sustainable_1.png}
+    \caption{Deterministic resource landscape.}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\linewidth]{images/sustainable_2.png}
+    \caption{Stochastic resource landscape.}
+  \end{subfigure}
+  \caption{Consume-regrow ratio under static and stochastic environments.}
+  \label{fig:cr_ratio}
+\end{figure}
+
+Overall, trade-aware movement produces a larger and more sustainable population (H1, confirmed by both terminal-count comparisons and Kaplan--Meier survival analysis), higher aggregate consumption and total societal wealth (H3), and a nuanced inequality picture (H4 partially supported): on deterministic maps, DRL compresses extreme fortunes---thinner upper tail, lower 99th-percentile wealth, near-identical Theil's $T$---while on stochastic maps the larger proportion of high-metabolism survivors widens the tail modestly, a pattern transparent in both Theil's $T$ and the top-wealth-share statistics.
+Per-capita wealth is somewhat lower under DRL, as the larger surviving population shares the gains from improved allocation; the population gain dominates, so total societal wealth rises.
+These outcomes emerge without central coordination, illustrating how micro-level learning of trade-aware spatial behavior can collectively move a decentralized economy toward more efficient and more sustainable resource use.
+
+% ------------------------------------------------------
+
+\section{Implications and Applications}
+\label{sec:implications}
+
+\subsection{Public Policy Modeling and Sustainability Planning}
+Integrating deep reinforcement learning into the \textit{Sugarscape} framework transforms it into a flexible experimental laboratory for economic policy design. By allowing agents to autonomously learn resource-use and exchange strategies, the model enables systematic exploration of how alternative institutional environments---such as taxation, redistribution rules, or conservation incentives---shape long-run outcomes. Because learning dynamics unfold in a controlled, risk-free setting, policymakers can investigate equilibrium responses ex ante and assess trade-offs among efficiency, equity, and sustainability. This mirrors advances in multi-agent computational economics, such as the two-level \textit{AI Economist} architecture of \citet{Zheng2022}, where adaptive policy interacts with learning agents to achieve desired welfare goals. In a similar spirit, the DRL-enhanced Sugarscape can be extended to evaluate fiscal or regulatory instruments that respond dynamically to observed behavior, allowing policy to co-evolve with agents' strategies.
+
+Beyond sustainability applications, the learning-based trading environment offers broader implications for understanding complex economic systems. Because agents internalize scarcity and exchange signals endogenously, the model naturally reveals feedback mechanisms and coordination failures that static frameworks may overlook. This creates fertile ground for examining how frictions in trade and resource access propagate through decentralized economies. For instance, selective constraints on exchange or strategic withholding of resources---conceptual analogues to real-world trade barriers or export restrictions---could be introduced as policy experiments within the environment. Such scenarios would illuminate how disruptions to trading networks influence long-run welfare, distributional outcomes, and system resilience. Recent progress in multi-agent reinforcement learning for economic governance \citep{RuddJones2025} suggests that these computational laboratories can help clarify when adaptive strategies mitigate or amplify shocks in interconnected socio-economic systems, offering insights relevant to contemporary global trade dynamics and coordinated policy responses.
+We note, however, that the present framework operates in a minimal two-resource environment with five movement actions and no learned trading decisions; substantial architectural extensions---multi-commodity resources, explicit bid/ask action spaces, and richer agent heterogeneity---would be required before such policy applications could be pursued at realistic scale.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+Four limitations should be noted explicitly.
+
+First, the learned policy governs movement only; bilateral trade remains executed by the classical Rule T, with the negotiated price set as the geometric mean of the two parties' MRS.  
+Extending the action space to include genuine trading decisions---bid/ask, quantity, partner selection---would convert the model from a study of \emph{trade-aware movement} into a study of \emph{learned bargaining}, a separate and substantially larger research program.  
+We view the present design as a deliberate first step that isolates the contribution of spatial trade-awareness without entangling it with bargaining-policy learning.
+
+Second, because the per-step reward in Eq.~\eqref{eq:reward} uses an expected-utility heuristic computed under a deterministic forward model of movement and metabolism, the reward signal may diverge from realized welfare in steps where stochastic harvesting or trading outcomes differ from the deterministic prediction.  
+Sensitivity analysis on PPO entropy and clipping coefficients (Section~\ref{sec:training}) indicates that the macroeconomic findings are robust to perturbation of these hyperparameters; we have not, however, conducted a head-to-head comparison between the expected-utility reward and a strictly realized-welfare reward.  
+This comparison is left for future work.
+
+Third, the experiments do not include an \emph{observation ablation} in which the MRS channel is removed from the agent's neighborhood input.
+Such an ablation would directly test whether the policy's trade-awareness---as opposed to its general spatial competence---is responsible for the observed differences in carrying capacity, prices, and inequality.
+We position this as the most informative single follow-up experiment and acknowledge it as a limitation of the present claim that the MRS channel is the operative mechanism.
+
+Fourth, the learning architecture uses single-agent PPO with full parameter sharing across all agents.
+While parameter sharing is a standard and computationally tractable approach at $N = 500$ agents \citep{Yu2022}, it constrains behavioral heterogeneity relative to independent multi-agent methods such as IPPO \citep{deWitt2020}.
+Whether the reported advantages over rule-based agents persist under IPPO---where individual policies co-evolve without parameter sharing---is an open question that requires re-implementing the training architecture and is beyond the scope of the present revision; we flag it as a priority for future work.
+
+\section{Conclusion and Future Work}
+
+This study demonstrates that making movement \emph{trade-aware}---conditioning spatial decisions on the market state of nearby agents, while leaving the classical bilateral trading rule unchanged---allows micro-level adaptive behavior to produce macro-level equilibrium stability in the \textit{Sugarscape} framework.  
+By internalizing the value of proximity to complementary traders, learning agents achieve higher survival rates confirmed across the full mortality trajectory (Kaplan--Meier), a thinner upper tail of wealth on deterministic maps and a nuanced but transparent distributional trade-off on stochastic maps, and more sustainable use of renewable resources than rule-based agents under identical environmental conditions.  
+The findings highlight DRL not merely as a computational method but as a conceptual bridge that links behavioral adaptation, economic theory, and policy-oriented simulation.
+
+The results also suggest that adaptive coordination and decentralized learning can replicate features of real economies---more consistent price formation, compression of extreme fortunes on stable landscapes alongside a transparent efficiency--equality trade-off under environmental uncertainty, and sustainable resource management---emerging organically from boundedly rational behavior.  
+This supports the growing view that agent-based models enriched with learning mechanisms can serve as powerful laboratories for studying complex economic dynamics and institutional design.
+
+Looking ahead, future research will extend this framework toward a unified platform that integrates trade-aware DRL with \textbf{structural estimation} methods.  
+Such integration would enable the recovery of fundamental behavioral primitives---preferences, expectations, and adjustment costs---from empirical data and embed them directly into the simulation.  
+By calibrating DRL agents to real-world microeconomic evidence, the model could evolve from a theoretical laboratory to an empirically grounded decision environment.  
+This unified framework would allow researchers to reproduce and test dynamic policy interventions, explore multi-commodity economies, and analyze co-evolving institutions within adaptive, data-driven simulations.
+
+In summary, the combination of reinforcement learning, agent-based modeling, and structural estimation offers a promising pathway toward realistic, interpretable, and policy-relevant computational economics.  
+Through this synthesis, future research can bring simulation-based methods closer to the empirical richness and predictive capacity required for understanding and sustaining complex economic systems.
+
+\backmatter
+
+\bmhead*{Supplementary information}
+
+The supplementary materials include: (i) replication code (Python/Unity) and
+configuration files; (ii) pre-generated datasets used in the figures/tables; and (iii) a README with reproduction instructions. Files are provided on Zenodo (DOI: 10.5281/zenodo.17466369).
+
+\bmhead*{Acknowledgements}
+
+The author gratefully acknowledges the support of the University of Vaasa and the School of Accounting and Finance. 
+Special thanks are extended to Professor Panu Kalmi for his supervision and insightful guidance, and to colleagues in the Economics research group for their valuable discussions and feedback on earlier drafts of this study.
+
+\section*{Declarations}
+
+\begin{itemize}
+\item Funding: This research received no external funding and was conducted as part of the author's doctoral research at the University of Vaasa, Finland.
+\item Competing interests: The author declares that there are no competing interests relevant to the content of this article.
+\item Ethics approval and consent to participate: Not applicable.
+\item Consent for publication: Not applicable.
+\item Data availability: The datasets and code supporting the findings of this study are publicly available on Zenodo (DOI: 10.5281/zenodo.17466369). 
+  The pre-generated simulation datasets are located in the \texttt{TradingAwareSugarscapeReplication/} directory.
+\item Materials availability:  All materials required to train the model are provided in the \texttt{TradingAwareSugarscapeReplicationForTraining/} directory within the supplementary Zenodo repository.
+\item Code availability: The replication package reproduces all figures and tables using Jupyter notebooks and Python scripts contained in the \texttt{TradingAwareSugarscapeReplication/} directory at the same Zenodo repository.
+\item Author contribution: Conceptualization, Methodology, Software, Validation, Formal Analysis, Investigation, Visualization, Writing---Original Draft Preparation, and Writing---Review and Editing: Thanh Binh Lai.
+\end{itemize}
+
+\bibliography{sn-bibliography}
+
+\end{document}
